@@ -1,120 +1,201 @@
-import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Link } from 'react-router-dom';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { IconType } from 'react-icons';
+
+interface SocialLink {
+  icon: IconType;
+  href: string;
+  label: string;
+}
+
+interface NavigationLink {
+  name: string;
+  path: string;
+}
 
 const Footer = () => {
+  const socialLinks: SocialLink[] = [
+    { icon: FaFacebook, href: '#', label: 'Facebook' },
+    { icon: FaInstagram, href: '#', label: 'Instagram' },
+    { icon: FaTwitter, href: '#', label: 'Twitter' },
+    { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
+  ];
+
+  const quickLinks: NavigationLink[] = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+ 
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'Booking', path: '/booking' },
+  ];
+
+  const services: NavigationLink[] = [
+    { name: 'Wedding Events', path: '/events/wedding' },
+    { name: 'Corporate Events', path: '/events/corporate' },
+    { name: 'Entertainment Shows', path: '/events/entertainment' },
+    { name: 'Sports Events', path: '/events/sports' },
+  ];
+
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4">VEEVIBE</h3>
-            <p className="text-sm text-primary-foreground/80">
-              Creating unforgettable moments with elegance and precision since 2010.
+    <footer className="bg-gradient-to-br from-gray-900 to-black text-white pt-16 pb-8">
+      <div className="container mx-auto px-4 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {/* About Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h3 className="text-2xl font-bold text-yellow-400 mb-4">Elite Events</h3>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Creating unforgettable moments through exceptional event management services. Your vision, our expertise.
             </p>
-          </div>
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="text-yellow-400 hover:text-yellow-300 transition-colors p-2 bg-gray-800 rounded-lg hover:bg-gray-700"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/about" className="text-sm hover:text-secondary transition-elegant">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/gallery" className="text-sm hover:text-secondary transition-elegant">
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-sm hover:text-secondary transition-elegant">
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link to="/booking" className="text-sm hover:text-secondary transition-elegant">
-                  Book Event
-                </Link>
-              </li>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <h4 className="text-lg font-semibold text-yellow-400 mb-4">Quick Links</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link, index) => (
+                <motion.li
+                  key={link.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Link
+                    to={link.path}
+                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 flex items-center group"
+                  >
+                    <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    {link.name}
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Our Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/events/wedding" className="text-sm hover:text-secondary transition-elegant">
-                  Wedding Events
-                </Link>
-              </li>
-              <li>
-                <Link to="/events/corporate" className="text-sm hover:text-secondary transition-elegant">
-                  Corporate Events
-                </Link>
-              </li>
-              <li>
-                <Link to="/events/entertainment" className="text-sm hover:text-secondary transition-elegant">
-                  Entertainment
-                </Link>
-              </li>
-              <li>
-                <Link to="/events/sports" className="text-sm hover:text-secondary transition-elegant">
-                  Sports Events
-                </Link>
-              </li>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <h4 className="text-lg font-semibold text-yellow-400 mb-4">Our Services</h4>
+            <ul className="space-y-3">
+              {services.map((service, index) => (
+                <motion.li
+                  key={service.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Link
+                    to={service.path}
+                    className="text-gray-300 hover:text-yellow-400 transition-colors duration-300 flex items-center group"
+                  >
+                    <span className="w-2 h-2 bg-yellow-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    {service.name}
+                  </Link>
+                </motion.li>
+              ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <MapPin className="h-4 w-4 mt-1 flex-shrink-0" />
-                <p className="text-sm text-primary-foreground/80">
-                  123 Luxury Lane, Premium District, City 12345
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href="+91 9030003025" className="text-sm hover:text-secondary transition-elegant">
-                  +91 9030003025
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <Mail className="h-4 w-4 flex-shrink-0" />
-                <a href="mailto:info@prestigeevents.com" className="text-sm hover:text-secondary transition-elegant">
-                  info@prestigeevents.com
-                </a>
-              </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <h4 className="text-lg font-semibold text-yellow-400 mb-4">Contact Us</h4>
+            <div className="space-y-4">
+              <motion.div 
+                className="flex items-start space-x-3 group cursor-pointer"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FaMapMarkerAlt className="text-yellow-400 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-gray-300 group-hover:text-yellow-400 transition-colors">
+                  123 Event Street, City, State 12345
+                </span>
+              </motion.div>
+              <motion.div 
+                className="flex items-center space-x-3 group cursor-pointer"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FaPhone className="text-yellow-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-gray-300 group-hover:text-yellow-400 transition-colors">
+                  +1 (234) 567-8900
+                </span>
+              </motion.div>
+              <motion.div 
+                className="flex items-center space-x-3 group cursor-pointer"
+                whileHover={{ x: 5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FaEnvelope className="text-yellow-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                <span className="text-gray-300 group-hover:text-yellow-400 transition-colors">
+                  info@eliteevents.com
+                </span>
+              </motion.div>
             </div>
-
-            {/* Social Media */}
-            <div className="flex gap-4 mt-4">
-              <a href="#" className="hover:text-secondary transition-elegant">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-secondary transition-elegant">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-secondary transition-elegant">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="hover:text-secondary transition-elegant">
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center">
-          <p className="text-sm text-primary-foreground/60">
-            © 2024 Veevibe. All rights reserved.
+        {/* Bottom Bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="border-t border-gray-700 pt-8 text-center"
+        >
+          <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Elite Events. All rights reserved. | 
+            
           </p>
-        </div>
+          
+          {/* Additional Links */}
+          <div className="flex justify-center space-x-6 mt-4 text-xs text-gray-400">
+            <Link to="/privacy" className="hover:text-yellow-400 transition-colors">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-yellow-400 transition-colors">
+              Terms of Service
+            </Link>
+            <Link to="/cookies" className="hover:text-yellow-400 transition-colors">
+              Cookie Policy
+            </Link>
+          </div>
+        </motion.div>
       </div>
     </footer>
   );
