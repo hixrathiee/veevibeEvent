@@ -80,12 +80,11 @@ const Wedding = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background">
       <Navbar />
       <WhatsAppButton />
-
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative pt-32 pb-20 px-4 h-3/4 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${weddingHero})` }}
@@ -93,10 +92,10 @@ const Wedding = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#800000]/90 via-[#800000]/70 to-[#FFD700]/40" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6">
+          <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
             Dream Wedding Events
           </h1>
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 font-sans">
+          <p className="text-lg md:text-2xl text-primary-foreground/90 mb-8 font-sans">
             Your love story deserves a celebration as unique as your journey
             together
           </p>
@@ -149,7 +148,7 @@ const Wedding = () => {
                   <h3 className="text-xl font-semibold text-[#800000] mb-1">
                     {service.title}
                   </h3>
-                  <p className="text-[#5A0000]/80 font-sans">
+                  <p className="text-[#5A0000]/80 text-xs font-sans">
                     {service.description}
                   </p>
                 </div>
@@ -203,9 +202,9 @@ const Wedding = () => {
                     <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:rotate-[22deg]"></span>
                     <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:-rotate-[22deg]"></span>
 
-                    {/* Icon */}
-                    <div className="absolute bottom-0 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                      <p className="text-[#E99E00] font-medium">
+                    {/* Capacity (animated number) */}
+                    <div className="absolute bottom-12 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                      <p className="text-[#E99E00] font-extrabold ml-2 mr-2">
                         {venue.capacity}
                       </p>
                     </div>
@@ -217,6 +216,12 @@ const Wedding = () => {
                         {venue.name.split(" ")[1] || ""}
                       </span>
                     </h2>
+                    {/* Features (fade-in later for staggered elegance) */}
+                    <div className="absolute bottom-3 left-0 w-full text-center opacity-0 translate-y-3 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                      <p className="text-[#FFD700]/90 font-sans text-sm px-4">
+                        {venue.features}
+                      </p>
+                    </div>
                   </div>
                 </figcaption>
               </figure>
@@ -269,7 +274,7 @@ const Wedding = () => {
             </div>
           ))}
         </div> */}
-        <div className="flex justify-center items-center gap-8 py-3">
+        <div className="flex justify-center flex-wrap items-center gap-8 py-3">
           {[
             {
               step: "1",
@@ -294,7 +299,7 @@ const Wedding = () => {
           ].map((process, index) => (
             <div
               key={index}
-              className="group relative flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 w-72 border border-transparent 
+              className="group relative flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 w-80 border border-transparent 
              bg-[length:200%_200%] bg-gradient-to-r from-[#800000] via-[#FFD700] to-[#800000] 
              transition-all duration-700 ease-out hover:scale-105 hover:animate-gradientMove hover:border-[#FFD700]/50"
             >
