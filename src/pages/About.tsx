@@ -155,39 +155,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-<section className="py-20 px-6 bg-[#FAF7F0] text-center">
-  <div className="container mx-auto">
-    <h2 className="text-4xl md:text-5xl font-bold mb-12 text-[#3C1E3D] tracking-wide">
-      Our Achievements
-    </h2>
-
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-      {[
-        { number: "500+", label: "Events Hosted" },
-        { number: "14+", label: "Years of Experience" },
-        { number: "98%", label: "Client Satisfaction" },
-        { number: "50+", label: "Team Members" },
-      ].map((stat, index) => (
-        <div
-          key={index}
-          className="bg-white shadow-lg rounded-2xl py-8 px-4 hover:shadow-2xl transition-shadow duration-300 border border-[#E5E5E5]"
-        >
-          <div className="text-5xl md:text-6xl font-extrabold text-[#D6A419] mb-3">
-            {stat.number}
-          </div>
-          <div className="text-lg text-[#3C1E3D] font-medium tracking-wide">
-            {stat.label}
-          </div>
-          <div className="w-12 h-1 mt-4 mx-auto bg-[#D6A419] rounded-full"></div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
-
-
-
       <Footer />
     </div>
   );
