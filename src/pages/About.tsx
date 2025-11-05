@@ -5,6 +5,45 @@ import { FaRegLightbulb, FaHandsHelping, FaBuilding, FaTheaterMasks } from "reac
 import teamImage from "@/assets/team.jpg";
 import { GiPartyFlags, GiLaurelsTrophy } from "react-icons/gi";
 import { MdOutlineBusinessCenter } from "react-icons/md";
+import { motion } from "framer-motion";
+
+// Animation variants
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1]
+    } 
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 const About = () => {
   const values = [
@@ -80,59 +119,115 @@ const About = () => {
 ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <motion.div 
+      className="min-h-screen bg-background"
+      initial="hidden"
+      animate="show"
+      variants={container}
+    >
       <Navbar />
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 gradient-luxury">
-        <div className="container mx-auto text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-white">
+      <motion.section 
+        className="pt-32 pb-20 px-4 gradient-luxury overflow-hidden"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={container}
+      >
+        <motion.div 
+          className="container mx-auto text-center"
+          variants={item}
+        >
+          <motion.h1 
+            className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-white"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             About Veevibe Events
-          </h1>
-          <p className="text-xl text-muted-foreground font-sans max-w-3xl mx-auto text-white">
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-muted-foreground font-sans max-w-3xl mx-auto text-white"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             Crafting extraordinary moments with unparalleled elegance and precision since 2010
-          </p>
-        </div>
-      </section>
+          </motion.p>
+        </motion.div>
+      </motion.section>
 
       {/* Author Section */}
-      <section className="py-20 px-4 bg-muted">
+      <motion.section 
+        className="py-20 px-4 bg-muted overflow-hidden"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={staggerContainer}
+      >
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-foreground mb-6">Founder Message</h2>
-              <div className="space-y-4 font-sans text-muted-foreground">
-                <p>
-                  I’ve walked through the golden ballrooms of Mumbai, attended star-studded concerts in Dubai, and witnessed the sparkle of chandeliers across India’s and other countries’ finest venues.
-                </p>
-                <p>
-                  But in that grandeur, I searched for something deeper: the fragrance of jasmine, the warmth of a mother’s blessing, the sound of temple bells at dawn. They were missing.
-                </p>
-                <p>And so, Veevibe was born. I wanted to create a world where luxury and tradition could hold hands.</p>
-                <p>
-                  Where a bride could walk down an aisle adorned in a handcrafted Sabyasachi lehenga, yet still feel the grounding grace of turmeric and rose petals.
-                </p>
-                <p>Where a corporate gala could be as elegant as Paris, yet carry the soulful warmth of Hyderabad.</p>
-                <p>Veevibe is my promise: that your celebration will not just shine, but breathe. That it will not only impress, but also move hearts. Because the true art of event design is not in decoration; it is in emotion.</p>
-
-              </div>
-            </div>
-            <div className="relative">
-              <img
+          <motion.div 
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            variants={container}
+          >
+            <motion.div variants={fadeInUp}>
+              <motion.h2 
+                className="text-4xl font-bold text-foreground mb-6"
+                variants={item}
+              >
+                Founder Message
+              </motion.h2>
+              <motion.div 
+                className="space-y-4 font-sans text-muted-foreground"
+                variants={container}
+              >
+                {[/* ... */].map((paragraph, index) => (
+                  <motion.p 
+                    key={index}
+                    variants={item}
+                    className="opacity-0"
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-20% 0px -20% 0px" }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                  >
+                    {paragraph}
+                  </motion.p>
+                ))}
+              </motion.div>
+            </motion.div>
+            <motion.div 
+              className="relative"
+              variants={{
+                hidden: { opacity: 0, scale: 0.9 },
+                show: { 
+                  opacity: 1, 
+                  scale: 1,
+                  transition: { 
+                    duration: 0.8,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.2
+                  } 
+                }
+              }}
+            >
+              <motion.img
                 src={teamImage}
                 alt="Prestige Events Team"
                 className="rounded-lg shadow-luxury w-full h-auto"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Mission Section */}
       <section className="py-20 px-6 bg-gradient-to-b from-[#FAF7F0] to-white">
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
+          {/* ... */}
           {/* Image side */}
           <div className="flex justify-center md:justify-start md:ml-16 lg:ml-32">
             <div className="relative group overflow-hidden rounded-2xl shadow-lg w-[90%] h-48 sm:w-80 sm:h-64 md:w-[420px] md:h-[270px] lg:w-[500px] lg:h-[320px]">
@@ -179,93 +274,210 @@ const About = () => {
       </section>
 
       {/* About Sections */}
-       <section className="py-20 px-6 md:px-16 bg-muted">
-      <div className="max-w-6xl mx-auto text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#3C1E3D] mb-4 tracking-wide">
-          About Veevibe
-        </h2>
-        <p className="text-gray-700 text-lg md:text-xl font-light">
-          We create events that don’t just impress—they move hearts. Our commitment is to emotion, luxury, and tradition in perfect harmony.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-4xl mx-auto ml-4">
-        {aboutSections.map((section, idx) => (
-          <div
-            key={idx}
-            className="relative bg-white rounded-2xl p-6 flex flex-col items-center text-center shadow-lg border-t-4 border-[#D6A419]"
+      <motion.section 
+        className="py-20 px-6 md:px-16 bg-muted overflow-hidden"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerContainer}
+      >
+        <motion.div 
+          className="max-w-6xl mx-auto text-center mb-16"
+          variants={fadeInUp}
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-extrabold text-[#3C1E3D] mb-4 tracking-wide"
+            variants={item}
           >
-            {/* Icon */}
-            <div className="mb-6 p-4 rounded-full bg-[#FAF7F0] shadow-md">
-              {section.icon}
-            </div>
+            About Veevibe
+          </motion.h2>
+          <motion.p 
+            className="text-gray-700 text-lg md:text-xl font-light"
+            variants={item}
+          >
+            We create events that don't just impress—they move hearts. Our commitment is to emotion, luxury, and tradition in perfect harmony.
+          </motion.p>
+        </motion.div>
 
-            {/* Title */}
-            <h3 className="text-2xl font-bold text-[#3C1E3D] mb-2">
-              {section.title}
-            </h3>
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-10 w-4xl mx-auto"
+          variants={container}
+        >
+          {aboutSections.map((section, idx) => (
+            <motion.div
+              key={idx}
+              className="relative bg-white rounded-2xl p-6 flex flex-col items-center text-center shadow-lg border-t-4 border-[#D6A419] hover:shadow-xl transition-all duration-300"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                show: { 
+                  opacity: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: idx * 0.1
+                  }
+                }
+              }}
+              whileHover={{ 
+                y: -10,
+                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+              }}
+            >
+              {/* Icon */}
+              <motion.div 
+                className="mb-6 p-4 rounded-full bg-[#FAF7F0] shadow-md"
+                whileHover={{ rotate: 10, scale: 1.1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {section.icon}
+              </motion.div>
 
-            {/* Quote */}
-            <p className="text-[#D6A419] italic font-playfair mb-4">
-              {section.quote}
-            </p>
+              {/* Title */}
+              <motion.h3 
+                className="text-2xl font-bold text-[#3C1E3D] mb-2"
+                whileHover={{ color: '#D6A419' }}
+                transition={{ duration: 0.3 }}
+              >
+                {section.title}
+              </motion.h3>
 
-            {/* Content */}
-            <p className="text-gray-700 text-sm md:text-base ">
-              {section.content}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+              {/* Quote */}
+              <motion.p 
+                className="text-[#D6A419] italic font-playfair mb-4"
+                initial={{ opacity: 0.8 }}
+                whileHover={{ opacity: 1, scale: 1.03 }}
+                transition={{ duration: 0.3 }}
+              >
+                {section.quote}
+              </motion.p>
+
+              {/* Content */}
+              <motion.p 
+                className="text-gray-700 text-sm md:text-base"
+                initial={{ opacity: 0.9 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {section.content}
+              </motion.p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.section>
 
       {/* Values Section */}
-      <section className="py-20 px-4 bg-white relative overflow-hidden">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-wide">
+      <motion.section 
+        className="py-20 px-4 bg-white relative overflow-hidden"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={staggerContainer}
+      >
+        <motion.div 
+          className="container mx-auto"
+          variants={container}
+        >
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeInUp}
+          >
+            <motion.h2 
+              className="text-4xl md:text-5xl font-bold text-foreground mb-4 tracking-wide"
+              variants={item}
+            >
               Our Core Values
-            </h2>
-            <p className="text-lg text-muted-foreground font-sans max-w-2xl mx-auto">
+            </motion.h2>
+            <motion.p 
+              className="text-lg text-muted-foreground font-sans max-w-2xl mx-auto"
+              variants={item}
+            >
               At Veevibe, our principles illuminate every celebration — from heartfelt weddings
               to prestigious corporate galas and mesmerizing entertainment experiences.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+            variants={container}
+          >
             {values.map((value, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="group text-center p-8 rounded-2xl bg-card shadow-md border border-border 
                      transition-all duration-500 hover:shadow-gold hover:-translate-y-2"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  show: { 
+                    opacity: 1, 
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                      delay: index * 0.1,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }
+                }}
+                whileHover={{ 
+                  scale: 1.03,
+                  boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                }}
               >
-                <div className="flex items-center justify-center mb-6">
-                  <div className="w-20 h-20 flex items-center justify-center rounded-full 
-                            bg-[#D6A419]/10 group-hover:bg-[#D6A419]/20 
-                            transition-all duration-300">
+                <motion.div 
+                  className="flex items-center justify-center mb-6"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.div 
+                    className="w-20 h-20 flex items-center justify-center rounded-full 
+                              bg-[#D6A419]/10 group-hover:bg-[#D6A419]/20 
+                              transition-all duration-300"
+                    whileHover={{ rotate: 10 }}
+                  >
                     {value.icon}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
 
-                <h3 className="text-2xl font-semibold text-foreground mb-4 group-hover:text-[#D6A419] transition-colors duration-300">
+                <motion.h3 
+                  className="text-2xl font-semibold text-foreground mb-4 group-hover:text-[#D6A419] transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                >
                   {value.title}
-                </h3>
+                </motion.h3>
 
-                <ul className="text-muted-foreground font-sans text-sm space-y-2 leading-relaxed">
+                <motion.ul 
+                  className="text-muted-foreground font-sans text-sm space-y-2 leading-relaxed"
+                  variants={container}
+                >
                   {value.points.map((point, i) => (
-                    <li key={i} className="transition-colors duration-200 group-hover:text-foreground">
+                    <motion.li 
+                      key={i} 
+                      className="transition-colors duration-200 group-hover:text-foreground"
+                      variants={{
+                        hidden: { opacity: 0, x: -10 },
+                        show: { 
+                          opacity: 1, 
+                          x: 0,
+                          transition: {
+                            duration: 0.3,
+                            delay: 0.1 * i
+                          }
+                        }
+                      }}
+                      whileHover={{ x: 5, color: '#D6A419' }}
+                    >
                       • {point}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
-              </div>
+                </motion.ul>
+              </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
+          </motion.div>
+        </motion.div>
+      </motion.section>
 
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 
