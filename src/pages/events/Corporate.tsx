@@ -62,17 +62,18 @@ const Corporate = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background">
       <Navbar />
       <WhatsAppButton />
 
       {/* Hero Section */}
+
       <section className="relative pt-32 pb-20 px-4 h-3/4 flex items-center justify-center overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${corporateHero})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-corporate/90 to-corporate/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-corporate/90" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <h1 className="text-3xl md:text-5xl font-bold text-primary-foreground mb-6">
@@ -88,7 +89,7 @@ const Corporate = () => {
       </section>
 
       {/* Services */}
-      <section className="py-20 px-4">
+      <section className="py-5 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
@@ -138,7 +139,7 @@ const Corporate = () => {
                 {/* Hidden content (reveals on hover) */}
                 <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center text-center px-6 py-4 bg-white backdrop-blur-sm translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#dbd6d6]/10 mb-3">
-                    <service.icon className="h-8 w-8  text-corporate-secondary" />
+                    <service.icon className="h-8 w-8  text-corporate-secondary text-[#305296]" />
                   </div>
                   <h3 className="text-xl font-semibold text-card-foreground mb-1">
                     {service.title}
@@ -148,78 +149,6 @@ const Corporate = () => {
                   </p>
                 </div>
               </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="py-20 px-4 bg-muted">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">
-              Why Choose Us
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                title: "Strategic Planning",
-                description:
-                  "Align events with your business objectives for maximum impact",
-              },
-              {
-                title: "Cutting-Edge Technology",
-                description:
-                  "State-of-the-art AV, streaming, and presentation equipment",
-              },
-              {
-                title: "Professional Network",
-                description:
-                  "Access to top-tier venues, vendors, and industry experts",
-              },
-              {
-                title: "Measurable Results",
-                description: "Comprehensive analytics and post-event reporting",
-              },
-            ].map((benefit, index) => (
-              // <div key={index} className="flex gap-4">
-              //   <div className="flex-shrink-0 w-12 h-12 rounded-lg gradient-corporate flex items-center justify-center text-primary-foreground font-bold">
-              //     ✓
-              //   </div>
-              //   <div>
-              //     <h3 className="text-xl font-bold text-foreground mb-2">
-              //       {benefit.title}
-              //     </h3>
-              //     <p className="text-muted-foreground font-sans">
-              //       {benefit.description}
-              //     </p>
-              //   </div>
-              // </div>
-              <div
-                key={index}
-                className="group relative flex gap-4 items-start bg-white rounded-2xl shadow-lg p-6 border border-transparent 
-             bg-[length:200%_200%] bg-gradient-to-r from-[#335597] via-[#3b60a5] to-[#929AAA] 
-             transition-all duration-700 ease-out hover:scale-105 hover:animate-gradientMove hover:border-[#FFD700]/50"
-              >
-                {/* Inner white layer to mask gradient background */}
-                <div className="absolute inset-[1px] bg-white rounded-2xl"></div>
-
-                {/* Icon Circle */}
-                <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-lg  gradient-corporate flex items-center justify-center text-primary-foreground font-bold text-lg shadow-md">
-                  ✓
-                </div>
-
-                {/* Text Content */}
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold text-foreground mb-2">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground font-sans">
-                    {benefit.description}
-                  </p>
-                </div>
-              </div>
             ))}
           </div>
         </div>
@@ -290,11 +219,6 @@ const Corporate = () => {
                     <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:-rotate-[22deg]"></span>
 
                     {/* Capacity (styled content reveal) */}
-                    <div className="absolute bottom-0 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                      <p className="text-[#01A2CB] font-extrabold text-sm ml-2 mr-2">
-                        {venue.capacity}
-                      </p>
-                    </div>
 
                     {/* Title */}
                     <h2 className="absolute top-1/2 left-0 w-full text-center -translate-y-1/2 text-xl font-light uppercase transition-all duration-500 group-hover:font-semibold">
@@ -308,11 +232,111 @@ const Corporate = () => {
 
                 {/* Hidden details (revealed subtly on hover) */}
                 <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  <p className="font-sans px-4">{venue.features}</p>
+                  <p className="text-[#9EADCD] font-extrabold text-md ml-2 mr-2">
+                    {venue.capacity}
+                  </p>
+                  {/* <div className="absolute bottom-0 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                    
+                  </div> */}
                 </div>
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="py-8 pb-20 px-6">
+        <div className="container mx-auto text-center mb-16">
+          <h2 className="text-4xl font-bold text-[#25122B] mb-4">
+            Our Planning Process
+          </h2>
+        </div>
+
+        {/* <div className="max-w-3xl mx-auto space-y-8">
+          {[
+            {
+              step: "1",
+              title: "Initial Consultation",
+              description: "Share your vision...",
+            },
+            {
+              step: "2",
+              title: "Design & Proposal",
+              description: "Receive a customized plan...",
+            },
+            {
+              step: "3",
+              title: "Coordination",
+              description: "We handle all vendors...",
+            },
+            {
+              step: "4",
+              title: "Your Perfect Day",
+              description: "Relax and enjoy...",
+            },
+          ].map((process, index) => (
+            <div key={index} className="flex gap-6 items-start">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#800000] to-[#FFD700] text-white font-bold text-lg flex items-center justify-center shadow-md">
+                {process.step}
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-[#800000] mb-1">
+                  {process.title}
+                </h3>
+                <p className="text-[#5A0000]/80">{process.description}</p>
+              </div>
+            </div>
+          ))}
+        </div> */}
+        <div className="flex justify-center flex-wrap items-center gap-8 py-3">
+          {[
+            {
+              step: "1",
+              title: "Initial Consultation",
+              description: "Share your vision...",
+            },
+            {
+              step: "2",
+              title: "Design & Proposal",
+              description: "Receive a customized plan...",
+            },
+            {
+              step: "3",
+              title: "Coordination",
+              description: "We handle all vendors...",
+            },
+            {
+              step: "4",
+              title: "Your Perfect Day",
+              description: "Relax and enjoy...",
+            },
+          ].map((process, index) => (
+            <div
+              key={index}
+              className="group relative flex flex-col items-center text-center bg-white rounded-2xl shadow-lg p-6 w-80 border border-transparent 
+             bg-[length:200%_200%] bg-gradient-to-r from-[#335597] via-[#3b60a5] to-[#929AAA]
+             transition-all duration-700 ease-out hover:scale-105 hover:animate-gradientMove"
+            >
+              {/* Inner white layer to mask gradient background */}
+              <div className="absolute inset-[1px] bg-white rounded-2xl"></div>
+
+              {/* Step Circle */}
+              <div className="relative z-10 w-12 h-12 rounded-full gradient-corporate flex items-center justify-center text-primary-foreground font-bold text-lg shadow-md text-white font-bold text-lg flex items-center justify-center shadow-md mb-3">
+                {process.step}
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10">
+                <h3 className="text-xl font-bold text-foreground mb-2">
+                  {process.title}
+                </h3>
+                <p className="text-muted-foreground font-sans">
+                  {process.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
