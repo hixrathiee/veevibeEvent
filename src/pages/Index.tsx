@@ -188,12 +188,12 @@ const Index = () => {
         </Swiper>
         {/* Custom arrows */}
         <div
-          className="custom-prev absolute left-32 top-1/2 -translate-y-[40%] z-20 cursor-pointer text-[5rem] text-[#d4af37] hover:text-[#f0c75e] transition-colors duration-300"
+          className="custom-prev absolute left-6 md:left-32 top-1/2 -translate-y-[40%] z-20 cursor-pointer text-[1.5rem] md:text-[5rem] text-[#d4af37] hover:text-[#f0c75e] transition-colors duration-300"
         >
           &#10094; {/* Left arrow */}
         </div>
         <div
-          className="custom-next absolute right-32 top-1/2 -translate-y-[40%] z-20 cursor-pointer text-[5rem] text-[#d4af37] hover:text-[#f0c75e] transition-colors duration-300"
+          className="custom-next absolute right-6 md:right-32 top-1/2 -translate-y-[40%] z-20 cursor-pointer text-[1.5rem] md:text-[5rem] text-[#d4af37] hover:text-[#f0c75e] transition-colors duration-300"
         >
           &#10095; {/* Right arrow */}
         </div>
