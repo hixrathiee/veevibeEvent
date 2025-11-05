@@ -35,7 +35,7 @@ const WhatsAppButton = () => {
       onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 group"
+      className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-3 sm:p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 group"
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       animate={{ 
@@ -55,7 +55,7 @@ const WhatsAppButton = () => {
       }}
       aria-label="Chat on WhatsApp"
     >
-      <FaWhatsapp size={32} />
+      <FaWhatsapp className="w-6 h-6 sm:w-8 sm:h-8" />
       
       {/* Tooltip */}
       <motion.div
