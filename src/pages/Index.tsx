@@ -93,7 +93,7 @@ const Index = () => {
       rating: 5,
     },
     {
-      quote: " From registration to farewell , the experience felt intentional. Every detail mattered.",
+      quote: "From registration to farewell , the experience felt intentional.",
       author: "Investor, Delhi",
       image: "https://res.cloudinary.com/dqtuapdkq/image/upload/v1760882854/Screenshot_2025-10-19_193348_ilzkud.png",
       rating: 5,
@@ -142,8 +142,7 @@ const Index = () => {
           loop
           speed={1000}
           className="h-full"
-        >
-
+        > 
           {heroSlides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
@@ -253,45 +252,42 @@ const Index = () => {
             </p>
           </div>
           {/* Top Row - 3 Cards */}
-          <div className="flex flex-col lg:flex-row lg:justify-center lg:space-x-8 space-y-8 lg:space-y-0 mb-8">
+          <div className="flex flex-col lg:flex-row lg:justify-center lg:space-x-8 space-y-6 lg:space-y-0 mb-8">
             {founderSections.slice(0, 3).map((section, index) => (
               <div
                 key={index}
-                className="bg-white border-2 border-[#D6A419] rounded-3xl shadow-lg p-8 flex-1 flex flex-col items-start 
-              transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-[#3C1E3D]"
+                className="bg-white border-2 border-[#D6A419] rounded-3xl shadow-md p-6 flex-1 flex flex-col items-start 
+      transform transition-all duration-500 hover:scale-[1.03] hover:shadow-xl hover:border-[#3C1E3D]"
               >
-                <div className="text-[#D6A419] text-5xl mb-4">{section.icon}</div>
-                <h3 className="text-[#3C1E3D] text-2xl font-semibold mb-3">
-                  {section.title}
-                </h3>
-                <p className="text-[#2C2C2C] text-base leading-relaxed">{section.text}</p>
+                <div className="text-[#D6A419] text-4xl mb-3">{section.icon}</div>
+                <h3 className="text-[#3C1E3D] text-xl font-semibold mb-2">{section.title}</h3>
+                <p className="text-[#2C2C2C] text-sm leading-relaxed">{section.text}</p>
               </div>
             ))}
           </div>
 
           {/* Bottom Row - 2 Cards */}
-          <div className="flex flex-col md:flex-row md:justify-center md:space-x-8 space-y-8 md:space-y-0">
+          <div className="flex flex-col md:flex-row md:justify-center md:space-x-8 space-y-6 md:space-y-0">
             {founderSections.slice(3, 5).map((section, index) => (
               <div
                 key={index}
-                className="bg-white border-2 border-[#D6A419] rounded-3xl shadow-lg p-8 flex-1 flex flex-col items-start 
-              transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:border-[#3C1E3D]"
+                className="bg-white border-2 border-[#D6A419] rounded-3xl shadow-md p-6 flex-1 flex flex-col items-start 
+      transform transition-all duration-500 hover:scale-[1.03] hover:shadow-xl hover:border-[#3C1E3D]"
               >
-                <div className="text-[#D6A419] text-5xl mb-4">{section.icon}</div>
-                <h3 className="text-[#3C1E3D] text-2xl font-semibold mb-3">
-                  {section.title}
-                </h3>
-                <p className="text-[#2C2C2C] text-base leading-relaxed">{section.text}</p>
+                <div className="text-[#D6A419] text-4xl mb-3">{section.icon}</div>
+                <h3 className="text-[#3C1E3D] text-xl font-semibold mb-2">{section.title}</h3>
+                <p className="text-[#2C2C2C] text-sm leading-relaxed">{section.text}</p>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
 
       {/* Testimonials */}
       <section className="py-20 px-4 bg-muted">
-        <div className="container mx-auto">
+        <div className="container mx-auto ">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               What Our Clients Say
@@ -301,43 +297,43 @@ const Index = () => {
             </p>
           </div>
 
-         <Swiper
-          modules={[Pagination, Autoplay]}
-          spaceBetween={30}
-          slidesPerView={1}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 5000, disableOnInteraction: false }}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          className="pb-10"
-        >
-          {testimonials.map((testimonial, index) => (
-            <SwiperSlide key={index}>
-              <Card className="p-6 bg-card border-border shadow-md hover:shadow-xl transition-transform duration-500 hover:scale-105">
-                <div className="flex justify-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.author}
-                    className="w-20 h-20 rounded-full object-cover border-2 border-secondary shadow-sm"
-                  />
-                </div>
-                <div className="flex justify-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
-                  ))}
-                </div>
-                <p className="text-card-foreground mb-4 font-sans italic text-center">
-                  “{testimonial.quote}”
-                </p>
-                <div className="text-center">
-                  <p className="font-bold text-card-foreground">{testimonial.author}</p>
-                </div>
-              </Card>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+          <Swiper
+            modules={[Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            breakpoints={{
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            className="pb-10"
+          >
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide key={index} className="overflow-visible">
+                <Card className="relative z-10 p-6 bg-card border-border shadow-md hover:shadow-xl transition-transform duration-500 hover:scale-105 min-h-[200px]">
+                  <div className="flex justify-center mb-4">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.author}
+                      className="w-20 h-20 rounded-full object-cover border-2 border-secondary shadow-sm"
+                    />
+                  </div>
+                  <div className="flex justify-center gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 fill-secondary text-secondary" />
+                    ))}
+                  </div>
+                  <p className="text-card-foreground mb-4 font-sans italic text-center">
+                    “{testimonial.quote}”
+                  </p>
+                  <div className="text-center">
+                    <p className="font-bold text-card-foreground">{testimonial.author}</p>
+                  </div>
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </section>
 
