@@ -166,6 +166,10 @@ All colors MUST be HSL.
 }
 
 .swiper-pagination {
+  bottom: 1px !important; 
+}
+
+.hero-swiper .swiper-pagination {
   bottom: 60px !important; 
 }
 

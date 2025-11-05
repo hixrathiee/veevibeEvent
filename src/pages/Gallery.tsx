@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { X } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 interface ImageData {
   src: string;
@@ -173,6 +174,25 @@ const Gallery = () => {
       : images.filter((img) => img.category === activeCategory);
   }, [images, activeCategory]);
   
+const location = useLocation();
+
+useEffect(() => {
+  if (!images.length) return; // wait until images are loaded
+
+  const params = new URLSearchParams(location.search);
+  const categoryParam = params.get("category");
+console.log("Effect ran | images:", images.length, "| category param:", categoryParam);
+  if (categoryParam) {
+    const matchedCategory = categories.find(
+      (cat) => cat.toLowerCase() === categoryParam.toLowerCase()
+    );
+    setActiveCategory(matchedCategory || "All");
+  } else {
+    setActiveCategory("All");
+  }
+}, [location.search, images]); // run again when images finish loading
+
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
