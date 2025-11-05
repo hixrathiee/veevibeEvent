@@ -159,35 +159,7 @@ const Sports = () => {
         </div>
       </section>
 
-      {/* Tricolor Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
-            <div className="bg-sports-saffron p-12 text-center">
-              <h3 className="text-2xl font-bold text-primary-foreground mb-4">
-                Courage
-              </h3>
-              <p className="text-primary-foreground/90 font-sans">
-                Celebrating the bravery and determination of athletes
-              </p>
-            </div>
-            <div className="bg-sports-white p-12 text-center border-y border-border">
-              <h3 className="text-2xl font-bold text-primary mb-4">Unity</h3>
-              <p className="text-muted-foreground font-sans">
-                Bringing communities together through the power of sports
-              </p>
-            </div>
-            <div className="bg-sports-green p-12 text-center">
-              <h3 className="text-2xl font-bold text-primary-foreground mb-4">
-                Growth
-              </h3>
-              <p className="text-primary-foreground/90 font-sans">
-                Fostering development and excellence in athletic pursuits
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+     
 
       {/* Features */}
       {/* <section className="py-20 px-4 bg-muted">
@@ -319,6 +291,36 @@ const Sports = () => {
                     </h2>
                   </div>
                 </div>
+
+                 {/* Tricolor Section */}
+      <section className="py-20 px-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+            <div className="bg-sports-saffron p-12 text-center">
+              <h3 className="text-2xl font-bold text-primary-foreground mb-4">
+                Courage
+              </h3>
+              <p className="text-primary-foreground/90 font-sans">
+                Celebrating the bravery and determination of athletes
+              </p>
+            </div>
+            <div className="bg-sports-white p-12 text-center border-y border-border">
+              <h3 className="text-2xl font-bold text-primary mb-4">Unity</h3>
+              <p className="text-muted-foreground font-sans">
+                Bringing communities together through the power of sports
+              </p>
+            </div>
+            <div className="bg-sports-green p-12 text-center">
+              <h3 className="text-2xl font-bold text-primary-foreground mb-4">
+                Growth
+              </h3>
+              <p className="text-primary-foreground/90 font-sans">
+                Fostering development and excellence in athletic pursuits
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
                 {/* Hidden details (revealed subtly on hover) */}
                 <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
