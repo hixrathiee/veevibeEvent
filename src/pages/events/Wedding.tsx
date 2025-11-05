@@ -184,30 +184,30 @@ const Wedding = () => {
               //   </p>
               //   <p className="text-[#5A0000]/80">{venue.features}</p>
               // </Card>
-              <figure
+              <Card
                 key={index}
-                className="relative overflow-hidden rounded-2xl w-90 h-72 bg-black text-white shadow-md group"
+                className="relative overflow-hidden rounded-2xl w-90 h-72 bg-black text-white shadow-md group transition-all duration-500 ease-in-out"
               >
                 {/* Background image */}
                 <img
                   src={`${venue.image}`}
                   alt={venue.name}
-                  className="w-full h-full object-cover opacity-90 transition-all duration-500 ease-in-out group-hover:opacity-35 group-hover:scale-110"
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 transition-all duration-500 ease-in-out group-hover:opacity-35 group-hover:scale-110"
                 />
 
                 {/* Circular animation overlay */}
-                <figcaption className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center">
                   <div className="relative w-40 h-40 rounded-full bg-black/30 transition-all duration-500 ease-in-out group-hover:bg-transparent">
                     {/* Rotating semi-borders */}
                     <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:rotate-[22deg]"></span>
                     <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:-rotate-[22deg]"></span>
 
-                    {/* Capacity (animated number) */}
-                    <div className="absolute bottom-12 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                      <p className="text-[#E99E00] font-extrabold ml-2 mr-2">
+                    {/* Capacity (styled content reveal) */}
+                    {/* <div className="absolute bottom-0 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                      <p className="text-[#01A2CB] font-extrabold text-sm ml-2 mr-2">
                         {venue.capacity}
                       </p>
-                    </div>
+                    </div> */}
 
                     {/* Title */}
                     <h2 className="absolute top-1/2 left-0 w-full text-center -translate-y-1/2 text-xl font-light uppercase transition-all duration-500 group-hover:font-semibold">
@@ -216,15 +216,56 @@ const Wedding = () => {
                         {venue.name.split(" ")[1] || ""}
                       </span>
                     </h2>
-                    {/* Features (fade-in later for staggered elegance) */}
-                    <div className="absolute bottom-3 left-0 w-full text-center opacity-0 translate-y-3 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
-                      <p className="text-[#FFD700]/90 font-sans text-sm px-4">
-                        {venue.features}
-                      </p>
-                    </div>
                   </div>
-                </figcaption>
-              </figure>
+                </div>
+
+                {/* Hidden details (revealed subtly on hover) */}
+                <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
+                  <p className="text-[#01A2CB] font-extrabold text-sm ml-2 mr-2">
+                        {venue.capacity}
+                      </p>
+                </div>
+              </Card>
+              // <figure
+              //   key={index}
+              //   className="relative overflow-hidden rounded-2xl w-90 h-72 bg-black text-white shadow-md group"
+              // >
+              //   {/* Background image */}
+              //   <img
+              //     src={`${venue.image}`}
+              //     alt={venue.name}
+              //     className="w-full h-full object-cover opacity-90 transition-all duration-500 ease-in-out group-hover:opacity-35 group-hover:scale-110"
+              //   />
+
+              //   {/* Circular animation overlay */}
+              //   <figcaption className="absolute inset-0 flex items-center justify-center">
+              //     <div className="relative w-40 h-40 rounded-full bg-black/30 transition-all duration-500 ease-in-out group-hover:bg-transparent">
+              //       {/* Rotating semi-borders */}
+              //       <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:rotate-[22deg]"></span>
+              //       <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:-rotate-[22deg]"></span>
+
+              //       {/* Capacity (animated number) */}
+              //       <div className="absolute bottom-12 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+              //         <p className="text-[#E99E00] font-extrabold ml-2 mr-2">
+              //           {venue.capacity}
+              //         </p>
+              //       </div>
+
+              //       {/* Title */}
+              //       <h2 className="absolute top-1/2 left-0 w-full text-center -translate-y-1/2 text-xl font-light uppercase transition-all duration-500 group-hover:font-semibold">
+              //         {venue.name.split(" ")[0]}
+              //         <span className="block font-bold">
+              //           {venue.name.split(" ")[1] || ""}
+              //         </span>
+              //       </h2>
+              //       {/* Features (fade-in later for staggered elegance) */}
+              //     </div>
+              //     {/* Hidden details (revealed subtly on hover) */}
+              //     <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
+              //       <p className="font-sans px-4">{venue.features}</p>
+              //     </div>
+              //   </figcaption>
+              // </figure>
             ))}
           </div>
         </div>
