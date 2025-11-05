@@ -177,21 +177,19 @@ const Gallery = () => {
 const location = useLocation();
 
 useEffect(() => {
-  if (!images.length) return; // wait until images are loaded
-
-  const params = new URLSearchParams(location.search);
-  const categoryParam = params.get("category");
-console.log("Effect ran | images:", images.length, "| category param:", categoryParam);
-  if (categoryParam) {
-    const matchedCategory = categories.find(
-      (cat) => cat.toLowerCase() === categoryParam.toLowerCase()
-    );
-    setActiveCategory(matchedCategory || "All");
-  } else {
-    setActiveCategory("All");
-  }
-}, [location.search, images]); // run again when images finish loading
-
+    const params = new URLSearchParams(location.search);
+    const categoryParam = params.get("category");
+    
+    if (categoryParam) {
+      const categories = ["All", "Wedding", "Corporate", "Entertainment", "Sports", "Special"];
+      const matchedCategory = categories.find(
+        (cat) => cat.toLowerCase() === categoryParam.toLowerCase()
+      );
+      setActiveCategory(matchedCategory || "All");
+    } else {
+      setActiveCategory("All");
+    }
+  }, [location.search]); 
 
   return (
     <div className="min-h-screen bg-background">
