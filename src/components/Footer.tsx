@@ -42,7 +42,6 @@ const Footer = () => {
     { name: 'Trending', path: '/trending' },
     { name: 'About', path: '/about' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Contact', path: '/contact' },
     { name: 'Booking', path: '/booking' },
   ];
 
