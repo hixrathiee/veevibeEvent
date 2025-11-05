@@ -48,88 +48,88 @@ const Gallery = () => {
     
     // Corporate Events
     { 
-      src: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Annual Corporate Conference", 
       category: "Corporate" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Corporate Team Building", 
       category: "Corporate" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1431540015161-0bf868a66537?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Product Launch Event", 
       category: "Corporate" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Business Seminar", 
       category: "Corporate" 
     },
     
     // Entertainment Shows
     { 
-      src: "https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Live Concert Night", 
       category: "Entertainment" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "DJ Night Extravaganza", 
       category: "Entertainment" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Cultural Dance Performance", 
       category: "Entertainment" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1514525252781-5f7d9b5f5a9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Celebrity Performance", 
       category: "Entertainment" 
     },
     
     // Sports Events
     { 
-      src: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Championship Finals", 
       category: "Sports" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1517649763962-0c2a416d50da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1579952363872-3f1d9b7d1f5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Marathon Event", 
       category: "Sports" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1508098682722-e99c47a06b43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1417325384643-aac51acc9e5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Award Ceremony", 
       category: "Sports" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1517649763962-0c2a416d50da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1517649763962-0c2a416d50da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Sports Day Event", 
       category: "Sports" 
     },
     
     // Special Events
     { 
-      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1511578310942-9f2d77db47ac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Charity Gala Night", 
       category: "Special" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1445208390239-c9c12762858c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1445208390239-c9c12762858c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Fashion Show", 
       category: "Special" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Award Night", 
       category: "Special" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
       title: "Exhibition Launch", 
       category: "Special" 
     }
@@ -139,14 +139,73 @@ const Gallery = () => {
   useEffect(() => {
     setLoading(true);
     
-    // Simulate network delay
-    const loadImages = async () => {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setImages(initialImages);
+    // Preload images with better error handling
+    const preloadImages = async () => {
+      const imagePromises = initialImages.map(async (img, idx) => {
+        return new Promise<void>((resolve) => {
+          const image = new Image();
+          image.onload = () => {
+            setImages(prev => {
+              const newImages = [...prev];
+              if (newImages[idx]) {
+                newImages[idx] = {
+                  ...newImages[idx],
+                  loaded: true,
+                  aspectRatio: image.naturalWidth / image.naturalHeight
+                };
+              }
+              return newImages;
+            });
+            resolve();
+          };
+          image.onerror = () => {
+            setImages(prev => {
+              const newImages = [...prev];
+              if (newImages[idx]) {
+                newImages[idx] = {
+                  ...newImages[idx],
+                  loaded: true,
+                  src: `https://placehold.co/800x600/1a1a1a/ffffff?text=${encodeURIComponent(img.title || 'Image')}`,
+                  aspectRatio: 4/3
+                };
+              }
+              return newImages;
+            });
+            resolve();
+          };
+          image.src = img.src;
+        });
+      });
+
+      await Promise.all(imagePromises);
       setLoading(false);
     };
+
+    // Set initial state with dynamic aspect ratio calculation
+    setImages(initialImages.map(img => {
+      // Create a temporary image to calculate aspect ratio
+      const tempImg = new Image();
+      tempImg.src = img.src;
+      const aspectRatio = tempImg.naturalWidth > 0 ? 
+        tempImg.naturalWidth / tempImg.naturalHeight : 
+        4/3; // Fallback ratio
+      
+      return {
+        ...img,
+        loaded: false,
+        aspectRatio: Math.min(Math.max(0.5, aspectRatio), 2) // Constrain between 0.5 and 2
+      };
+    }));
     
-    loadImages();
+    // Start preloading
+    preloadImages();
+    
+    // Set a timeout to ensure loading state doesn't get stuck
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000); // 3 second timeout
+    
+    return () => clearTimeout(timer);
   }, []);
   
   // Handle image load and get dimensions
@@ -156,13 +215,45 @@ const Gallery = () => {
     
     setImages(prev => {
       const newImages = [...prev];
-      newImages[index] = { 
-        ...newImages[index], 
-        loaded: true,
-        aspectRatio
-      };
+      if (newImages[index]) {
+        newImages[index] = { 
+          ...newImages[index],
+          loaded: true,
+          aspectRatio,
+          // Ensure we have a valid source
+          src: img.src || newImages[index].src
+        };
+      }
       return newImages;
     });
+  };
+
+  // Handle image error
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>, index: number) => {
+    const img = e.target as HTMLImageElement;
+    const fallbackText = images[index]?.title ? 
+      encodeURIComponent(images[index].title.substring(0, 30)) : 
+      'Image';
+    const fallbackSrc = `https://placehold.co/800x600/1a1a1a/ffffff?text=${fallbackText}`;
+    
+    // Only update if the source is different to prevent infinite loops
+    if (img.src !== fallbackSrc) {
+      img.src = fallbackSrc;
+      
+      // Force update the images state with the fallback source
+      setImages(prev => {
+        const newImages = [...prev];
+        if (newImages[index]) {
+          newImages[index] = { 
+            ...newImages[index],
+            src: fallbackSrc,
+            loaded: true,
+            aspectRatio: 4/3
+          };
+        }
+        return newImages;
+      });
+    }
   };
 
   const categories = ["All", "Wedding", "Corporate", "Entertainment", "Sports", "Special"];
@@ -174,22 +265,28 @@ const Gallery = () => {
       : images.filter((img) => img.category === activeCategory);
   }, [images, activeCategory]);
   
-const location = useLocation();
+  const location = useLocation();
 
-useEffect(() => {
+  useEffect(() => {
     const params = new URLSearchParams(location.search);
     const categoryParam = params.get("category");
     
     if (categoryParam) {
-      const categories = ["All", "Wedding", "Corporate", "Entertainment", "Sports", "Special"];
-      const matchedCategory = categories.find(
-        (cat) => cat.toLowerCase() === categoryParam.toLowerCase()
-      );
-      setActiveCategory(matchedCategory || "All");
+      // Map URL parameters to actual category names
+      const categoryMap: {[key: string]: string} = {
+        'wedding': 'Wedding',
+        'corporate': 'Corporate',
+        'sports': 'Sports',
+        'entertainment': 'Entertainment',
+        'special': 'Special'
+      };
+      
+      const matchedCategory = categoryMap[categoryParam.toLowerCase()] || 'All';
+      setActiveCategory(matchedCategory);
     } else {
       setActiveCategory("All");
     }
-  }, [location.search]); 
+  }, [location.search]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -256,22 +353,51 @@ useEffect(() => {
                       height: image.aspectRatio ? 'auto' : '250px'
                     }}
                   >
-                    <div className="w-full h-full overflow-hidden relative">
+                    <div 
+                      className="w-full overflow-hidden relative" 
+                      style={{
+                        backgroundColor: '#f3f4f6',
+                        aspectRatio: image.aspectRatio ? `${image.aspectRatio}` : '4/3',
+                        maxHeight: '500px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                    >
                       {!image.loaded && (
                         <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse"></div>
                       )}
+                      {!image.loaded ? (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800">
+                          <div className="animate-pulse flex flex-col items-center">
+                            <div className="h-4 w-4 rounded-full bg-gray-400 mb-2"></div>
+                            <span className="text-xs text-gray-500">Loading...</span>
+                          </div>
+                        </div>
+                      ) : null}
                       <img
+                        key={`${index}-${image.src}`}
                         src={image.src}
                         alt={image.title}
-                        className={`w-full h-full object-cover transition-all duration-500 ease-in-out group-hover:scale-105 ${
+                        className={`w-full h-full transition-all duration-300 ease-in-out group-hover:scale-105 ${
                           image.loaded ? 'opacity-100' : 'opacity-0'
                         }`}
                         loading="lazy"
-                        onLoad={(e) => handleImageLoad(e, index)}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = `https://placehold.co/800x600/1a1a1a/ffffff?text=${encodeURIComponent(image.title)}`;
+                        style={{
+                          position: 'absolute',
+                          top: '50%',
+                          left: '50%',
+                          width: 'auto',
+                          height: 'auto',
+                          maxWidth: '100%',
+                          maxHeight: '100%',
+                          transform: 'translate(-50%, -50%)',
+                          objectFit: 'contain',
+                          transition: 'opacity 0.3s ease-in-out',
+                          backgroundColor: image.loaded ? 'transparent' : '#f3f4f6'
                         }}
+                        onLoad={(e) => handleImageLoad(e, index)}
+                        onError={(e) => handleImageError(e, index)}
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
