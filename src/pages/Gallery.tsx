@@ -294,8 +294,12 @@ const Gallery = () => {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 gradient-luxury">
-        <div className="container mx-auto text-center">
+      <section className="pt-32 pb-20 px-4 gradient-luxury relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-yellow-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto text-center relative z-10">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-white">
             Event Gallery
           </h1>
@@ -326,7 +330,7 @@ const Gallery = () => {
       </section>
 
       {/* Gallery Grid */}
-      <section className="py-10 px-4 max-w-7xl mx-auto">
+      <section className="py-10 px-4 max-w-7xl mx-auto bg-background">
         <div className="container mx-auto">
           {loading ? (
             <div className="col-span-full flex justify-center items-center py-20">
