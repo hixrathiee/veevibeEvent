@@ -203,11 +203,11 @@ const Wedding = () => {
                     <span className="absolute inset-0 rounded-full border-2 border-white border-b-transparent transition-all duration-500 ease-in-out group-hover:-rotate-[22deg]"></span>
 
                     {/* Capacity (styled content reveal) */}
-                    <div className="absolute bottom-0 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                    {/* <div className="absolute bottom-0 left-0 w-full flex justify-center opacity-0 translate-y-6 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
                       <p className="text-[#01A2CB] font-extrabold text-sm ml-2 mr-2">
                         {venue.capacity}
                       </p>
-                    </div>
+                    </div> */}
 
                     {/* Title */}
                     <h2 className="absolute top-1/2 left-0 w-full text-center -translate-y-1/2 text-xl font-light uppercase transition-all duration-500 group-hover:font-semibold">
@@ -221,7 +221,9 @@ const Wedding = () => {
 
                 {/* Hidden details (revealed subtly on hover) */}
                 <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  <p className="font-sans px-4">{venue.features}</p>
+                  <p className="text-[#01A2CB] font-extrabold text-sm ml-2 mr-2">
+                        {venue.capacity}
+                      </p>
                 </div>
               </Card>
               // <figure
