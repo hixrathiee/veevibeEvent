@@ -158,6 +158,7 @@ const About = () => {
           <div className="text-center md:text-left space-y-6 md:pl-4 lg:pl-8 md:mr-10 max-w-xl mx-auto md:max-w-none">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground relative inline-block">
               Our Mission
+              <span className="absolute left-0  bottom-0 w-1/3 h-1 bg-[#452246] rounded-full"></span>
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               To create unforgettable experiences that celebrate life's most precious moments —
@@ -165,11 +166,11 @@ const About = () => {
               relationships founded on trust, innovation, and excellence.
             </p>
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-5 bg-[#D6A419]/10 rounded-xl">
+              <div className="p-6 bg-[#D6A419]/10 rounded-xl">
                 <h4 className="font-semibold text-[#D6A419]">Creativity</h4>
                 <p className="text-sm text-muted-foreground">Innovative ideas that inspire emotions.</p>
               </div>
-              <div className="p-5 bg-[#D6A419]/10 rounded-xl">
+              <div className="p-6 bg-[#D6A419]/10 rounded-xl">
                 <h4 className="font-semibold text-[#D6A419]">Trust</h4>
                 <p className="text-sm text-muted-foreground">Strong, transparent client relationships.</p>
               </div>

@@ -23,21 +23,25 @@ const Index = () => {
       image: heroImage,
       title: "Luxury Weddings",
       subtitle: "Where dreams meet elegance",
+      category: "Wedding",
     },
     {
       image: corporateImage,
       title: "Corporate Events",
       subtitle: "Professional perfection, redefined",
+      category: "Corporate",
     },
     {
       image: entertainmentImage,
       title: "Entertainment & Shows",
       subtitle: "Creating experiences that captivate",
+      category: "Entertainment",
     },
     {
       image: sports,
       title: "Sports Events",
       subtitle: "Creating experiences that captivate",
+      category: "Sports",
     },
   ];
   const services = [
@@ -69,7 +73,7 @@ const Index = () => {
 
   const testimonials = [
     {
-      quote: "When we saw the mandap, I wept. It wasn’t décor—it was my grandmother’s temple, reborn in elegance.",
+      quote: "When we saw the mandap, I wept. It wasn’t décor—it was my grandmother’s temple.",
       author: "Couple, Chennai",
       image: "https://res.cloudinary.com/dqtuapdkq/image/upload/v1760882758/Screenshot_2025-10-19_193328_agsqza.png",
       rating: 5,
@@ -136,13 +140,17 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         <Swiper
-          modules={[Autoplay, Pagination, EffectFade]}
+          modules={[Autoplay, Pagination, EffectFade, Navigation]}
           autoplay={{ delay: 5000, disableOnInteraction: false }}
           pagination={{ clickable: true }}
           loop
           speed={1000}
-          className="h-full"
-        > 
+          navigation={{
+            nextEl: ".custom-next",
+            prevEl: ".custom-prev",
+          }}
+          className="h-full relative hero-swiper"
+        >
           {heroSlides.map((slide, index) => (
             <SwiperSlide key={index}>
               <div
@@ -171,13 +179,24 @@ const Index = () => {
                     asChild
                     className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
                   >
-                    <Link to="/gallery">View Gallery</Link>
+                    <Link to={`/gallery?category=${slide.category}`}>View Gallery</Link>
                   </Button>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        {/* Custom arrows */}
+        <div
+          className="custom-prev absolute left-32 top-1/2 -translate-y-[40%] z-20 cursor-pointer text-[5rem] text-[#d4af37] hover:text-[#f0c75e] transition-colors duration-300"
+        >
+          &#10094; {/* Left arrow */}
+        </div>
+        <div
+          className="custom-next absolute right-32 top-1/2 -translate-y-[40%] z-20 cursor-pointer text-[5rem] text-[#d4af37] hover:text-[#f0c75e] transition-colors duration-300"
+        >
+          &#10095; {/* Right arrow */}
+        </div>
       </section>
 
       {/* Services Overview */}
