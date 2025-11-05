@@ -333,7 +333,7 @@ const Sports = () => {
         </div>
       </section>
 
-      <section className="py-20 px-6">
+      <section className="py-15 px-6" style={{ marginBottom: "6rem" }}>
         <div className="container mx-auto text-center mb-16">
           <h2 className="text-4xl font-bold text-[#25122B] mb-4">
             Our Planning Process
