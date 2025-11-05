@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -192,42 +192,46 @@ const Booking = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center justify-between max-w-3xl mx-auto">
-              {[
-                { num: 1, label: "Personal Info", icon: Mail },
-                { num: 2, label: "Event Details", icon: Calendar },
-                { num: 3, label: "Requirements", icon: FileText },
-              ].map((step, index) => (
-                <div key={step.num} className="flex items-center flex-1">
-                  <div className="flex flex-col items-center flex-1">
-                    <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
-                        currentStep >= step.num
-                          ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white shadow-lg scale-110"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                    >
-                      {currentStep > step.num ? (
-                        <CheckCircle2 className="w-6 h-6" />
-                      ) : (
-                        <step.icon className="w-6 h-6" />
-                      )}
+            <div className="w-full max-w-3xl mx-auto">
+              <div className="flex items-center justify-between w-full">
+                {[
+                  { num: 1, label: "Personal Info", icon: Mail },
+                  { num: 2, label: "Event Details", icon: Calendar },
+                  { num: 3, label: "Requirements", icon: FileText },
+                ].map((step, index) => (
+                  <React.Fragment key={step.num}>
+                    <div className="flex flex-col items-center flex-shrink-0 relative">
+                      <div
+                        className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 z-10 ${
+                          currentStep >= step.num
+                            ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white shadow-lg scale-110"
+                            : "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {currentStep > step.num ? (
+                          <CheckCircle2 className="w-6 h-6" />
+                        ) : (
+                          <step.icon className="w-6 h-6" />
+                        )}
+                      </div>
+                      <span className={`text-xs mt-2 font-medium whitespace-nowrap ${
+                        currentStep >= step.num ? "text-foreground" : "text-muted-foreground"
+                      }`}>
+                        {step.label}
+                      </span>
                     </div>
-                    <span className={`text-xs mt-2 font-medium ${
-                      currentStep >= step.num ? "text-foreground" : "text-muted-foreground"
-                    }`}>
-                      {step.label}
-                    </span>
-                  </div>
-                  {index < 2 && (
-                    <div
-                      className={`h-1 flex-1 mx-2 rounded transition-all duration-300 ${
-                        currentStep > step.num ? "bg-gradient-to-r from-yellow-400 to-yellow-600" : "bg-muted"
-                      }`}
-                    ></div>
-                  )}
-                </div>
-              ))}
+                    {index < 2 && (
+                      <div 
+                        className={`h-1 flex-1 mx-2 sm:mx-4 max-w-[100px] sm:max-w-[150px] transition-all duration-300 ${
+                          currentStep > step.num 
+                            ? "bg-gradient-to-r from-yellow-400 to-yellow-600" 
+                            : "bg-muted"
+                        }`}
+                      />
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </motion.div>
 
@@ -314,11 +318,10 @@ const Booking = () => {
                     type="button"
                     onClick={nextStep}
                     variant="luxury"
-                    size="lg"
-                    className="px-8"
+                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto text-sm sm:text-base"
                   >
-                    Next Step
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <span className="hidden sm:inline">Next Step</span>
+                    <ArrowRight className="w-5 h-5 sm:ml-2" />
                   </Button>
                 </div>
               </motion.div>
@@ -475,26 +478,24 @@ const Booking = () => {
                   </div>
                 </div>
                 
-                <div className="flex justify-between mt-8">
+                <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
                   <Button 
                     type="button"
                     onClick={prevStep}
                     variant="outline"
-                    size="lg"
-                    className="px-8"
+                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-2 sm:order-1 text-sm sm:text-base"
                   >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Previous
+                    <ArrowLeft className="w-5 h-5 sm:mr-2" />
+                    <span className="hidden sm:inline">Previous</span>
                   </Button>
                   <Button 
                     type="button"
                     onClick={nextStep}
                     variant="luxury"
-                    size="lg"
-                    className="px-8"
+                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-1 sm:order-2 text-sm sm:text-base"
                   >
-                    Next Step
-                    <ArrowRight className="w-4 h-4 ml-2" />
+                    <span className="hidden sm:inline">Next Step</span>
+                    <ArrowRight className="w-5 h-5 sm:ml-2" />
                   </Button>
                 </div>
               </motion.div>
@@ -552,33 +553,31 @@ const Booking = () => {
                   </div>
                 </div>
 
-                <div className="flex justify-between mt-8">
+                <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
                   <Button 
                     type="button"
                     onClick={prevStep}
                     variant="outline"
-                    size="lg"
-                    className="px-8"
+                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-2 sm:order-1 text-sm sm:text-base"
                   >
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    Previous
+                    <ArrowLeft className="w-5 h-5 sm:mr-2" />
+                    <span className="hidden sm:inline">Previous</span>
                   </Button>
                   <Button 
                     variant="luxury" 
-                    size="lg" 
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-12 py-6 text-lg font-bold shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="h-11 sm:h-14 px-4 sm:px-12 text-sm sm:text-lg font-bold shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-1 sm:order-2"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Submitting...
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <span className="hidden sm:inline sm:ml-2">Submitting...</span>
                       </>
                     ) : (
                       <>
-                        <Sparkles className="w-5 h-5 mr-2" />
-                        Submit Booking Request
+                        <Sparkles className="w-5 h-5" />
+                        <span className="hidden sm:inline sm:ml-2">Submit Booking Request</span>
                       </>
                     )}
                   </Button>

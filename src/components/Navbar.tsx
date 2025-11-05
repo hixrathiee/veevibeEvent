@@ -17,9 +17,10 @@ const Navbar = () => {
 
   const navLinks = [
     { path: "/", label: "Home" },
-    { path: "/about", label: "About" },
-    { path: "/gallery", label: "Gallery" },
+    { path: "/trending", label: "Trending" },
     { path: "/contact", label: "Contact" },
+    { path: "/gallery", label: "Gallery" },
+    { path: "/about", label: "About" },
   ];
 
   const eventLinks = [
@@ -40,7 +41,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 cursor-pointer">
-            {navLinks.slice(0, 2).map((link) => (
+            {navLinks.slice(0, 3).map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
@@ -83,7 +84,7 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {navLinks.slice(2).map((link) => (
+            {navLinks.slice(3).map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
