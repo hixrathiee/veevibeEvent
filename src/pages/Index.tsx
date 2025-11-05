@@ -156,7 +156,7 @@ const Index = () => {
 
               {/* Content */}
               <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
-                <h1 className="text-5xl md:text-6xl font-bold text-primary-foreground mb-6 drop-shadow-md animate-fade-in">
+                <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6 drop-shadow-md animate-fade-in">
                   {slide.title}
                 </h1>
                 <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 font-sans animate-fade-in delay-200">
