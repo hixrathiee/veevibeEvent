@@ -159,8 +159,6 @@ const Sports = () => {
         </div>
       </section>
 
-     
-
       {/* Features */}
       {/* <section className="py-20 px-4 bg-muted">
         <div className="container mx-auto">
@@ -292,7 +290,20 @@ const Sports = () => {
                   </div>
                 </div>
 
-                 {/* Tricolor Section */}
+                {/* Hidden details (revealed subtly on hover) */}
+                <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
+                  <p className="text-[#FF661A] font-extrabold text-sm ml-2 mr-2">
+                    {venue.capacity}
+                  </p>
+                  {/* <p className="font-sans px-4">{venue.features}</p> */}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tricolor Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
@@ -318,19 +329,6 @@ const Sports = () => {
                 Fostering development and excellence in athletic pursuits
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-                {/* Hidden details (revealed subtly on hover) */}
-                <div className="absolute bottom-5 left-0 w-full text-center opacity-0 translate-y-5 transition-all duration-500 delay-300 group-hover:opacity-100 group-hover:translate-y-0">
-                  <p className="text-[#FF661A] font-extrabold text-sm ml-2 mr-2">
-                    {venue.capacity}
-                  </p>
-                  {/* <p className="font-sans px-4">{venue.features}</p> */}
-                </div>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
