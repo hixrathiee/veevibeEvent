@@ -253,31 +253,7 @@ const Booking = () => {
           </Card>
         </div>
       </section>
-
-      {/* Trust Badges */}
-      <section className="py-12 px-4 bg-muted">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">24/7</div>
-              <div className="text-sm text-muted-foreground font-sans">Support Available</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">100%</div>
-              <div className="text-sm text-muted-foreground font-sans">Secure Payment</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">500+</div>
-              <div className="text-sm text-muted-foreground font-sans">Events Completed</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">98%</div>
-              <div className="text-sm text-muted-foreground font-sans">Satisfaction Rate</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      
       <Footer />
     </div>
   );
