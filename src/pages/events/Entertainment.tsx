@@ -54,10 +54,9 @@ const Entertainment = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen bg-background">
       <Navbar />
       <WhatsAppButton />
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 h-3/4 flex items-center justify-center overflow-hidden">
         <div
