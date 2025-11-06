@@ -346,65 +346,7 @@ const Trending = () => {
 
       {/* Upcoming Trends Section */}
       <section className="py-20 px-4 bg-background">
-        <div className="container mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              What's Coming Next
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Stay ahead of the curve with these emerging trends in event planning.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {upcomingTrends.map((trend, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="p-6 hover:shadow-xl transition-all duration-300 border-border/50 bg-card h-full group hover:border-yellow-400/50">
-                  <div className="flex items-start gap-4 h-full">
-                    {/* Icon */}
-                    <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <trend.icon className="w-6 h-6 text-white" />
-                    </div>
-
-                    {/* Text + Progress Line */}
-                    <div className="flex flex-col justify-between flex-grow h-full">
-                      <div>
-                        <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-yellow-500 transition-colors">
-                          {trend.title}
-                        </h3>
-                        <p className="text-muted-foreground mb-4">
-                          {trend.description}
-                        </p>
-                      </div>
-
-                      <motion.div className="w-full h-1 bg-muted rounded-full overflow-hidden mt-auto">
-                        <motion.div
-                          initial={{ width: "0%" }}
-                          whileInView={{ width: `${75 + index * 5}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 1, delay: index * 0.2 }}
-                          className="h-full bg-gradient-to-r from-[hsl(45,90%,55%)] to-[hsl(280,60%,40%)]"
-                        />
-                      </motion.div>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+       
       </section>
 
       {/* CTA Section */}
