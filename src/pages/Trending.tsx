@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { TrendingUp, Calendar, Users, MapPin, ArrowRight, Heart, Star, Sparkles, Trophy, Music, Zap, Crown, Award } from "lucide-react";
+import { TrendingUp, Calendar, Users, MapPin, ArrowRight, Heart, Star, Sparkles, Trophy, Music, Zap, Crown, Award, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
@@ -9,6 +9,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import { Link } from "react-router-dom";
 
 const Trending = () => {
+  const [activeFilter, setActiveFilter] = useState("all");
   const trendingEvents = [
     {
       id: 1,
@@ -18,6 +19,7 @@ const Trending = () => {
       image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80",
       popularity: "98%",
       bookings: "250+",
+      trending: "hot",
       icon: Heart,
       color: "from-pink-500 to-rose-500",
     },
@@ -29,6 +31,7 @@ const Trending = () => {
       image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
       popularity: "95%",
       bookings: "180+",
+      trending: "rising",
       icon: Trophy,
       color: "from-blue-500 to-cyan-500",
     },
@@ -40,6 +43,7 @@ const Trending = () => {
       image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
       popularity: "92%",
       bookings: "320+",
+      trending: "hot",
       icon: Music,
       color: "from-purple-500 to-pink-500",
     },
@@ -51,6 +55,7 @@ const Trending = () => {
       image: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80",
       popularity: "89%",
       bookings: "145+",
+      trending: "new",
       icon: Sparkles,
       color: "from-green-500 to-emerald-500",
     },
@@ -62,6 +67,7 @@ const Trending = () => {
       image: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80",
       popularity: "94%",
       bookings: "290+",
+      trending: "rising",
       icon: Crown,
       color: "from-yellow-500 to-orange-500",
     },
@@ -73,6 +79,7 @@ const Trending = () => {
       image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&q=80",
       popularity: "91%",
       bookings: "210+",
+      trending: "hot",
       icon: Zap,
       color: "from-red-500 to-orange-500",
     },
@@ -83,23 +90,28 @@ const Trending = () => {
       name: "Vintage Elegance",
       description: "Classic sophistication with a modern twist",
       popularity: "High",
+      image: "https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?w=800&q=80",
     },
     {
       name: "Minimalist Chic",
       description: "Less is more with clean, contemporary designs",
       popularity: "Rising",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     },
     {
       name: "Bohemian Luxe",
       description: "Free-spirited style meets upscale comfort",
       popularity: "Hot",
+      image: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&q=80",
     },
     {
       name: "Tech-Forward",
       description: "Cutting-edge technology integration",
       popularity: "Trending",
+      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
     },
   ];
+
 
   const upcomingTrends = [
     {
@@ -124,6 +136,11 @@ const Trending = () => {
     },
   ];
 
+  const filters = ["all", "hot", "rising", "new", "upcoming"];
+
+  const filteredEvents = activeFilter === "all"
+    ? trendingEvents
+    : trendingEvents.filter(event => event.trending === activeFilter);
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -172,32 +189,68 @@ const Trending = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {trendingEvents.map((event, index) => (
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-5 py-3 rounded-full text-sm font-medium border capitalize transition-all duration-300 ${activeFilter === filter
+                  ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white shadow-md"
+                  : "bg-white text-muted-foreground border-border hover:bg-muted/50"
+                  }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          {/* Event Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredEvents.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="h-full flex"
+                className="flex"
               >
-                <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-border/50 bg-card flex flex-col w-full">
-                  <div className="relative h-56 overflow-hidden flex-shrink-0">
+                <Card className="group overflow-hidden hover:shadow-2xl transition-all duration-500 border-border/50 bg-card flex flex-col w-full rounded-2xl relative">
+                  {event.trending === "hot" && (
+                    <motion.div
+                      initial={{ scale: 0, rotate: -45 }}
+                      animate={{ scale: 1, rotate: 0 }}
+                      className="absolute top-4 left-4 z-10 bg-gradient-to-r from-red-500 to-orange-500 text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg"
+                    >
+                      <Flame className="w-3.5 h-3.5" />
+                      HOT
+                    </motion.div>
+                  )}
+                  {/* Event Image */}
+                  <div className="relative h-60 overflow-hidden">
                     <img
                       src={event.image}
                       alt={event.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                     />
-                    <div className={`absolute top-4 right-4 bg-gradient-to-r ${event.color} text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5`}>
+                    <div
+                      className={`absolute top-4 right-4 bg-gradient-to-r ${event.color} text-white px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1.5`}
+                    >
                       <TrendingUp className="w-3.5 h-3.5" />
                       {event.popularity}
                     </div>
-                    <div className={`absolute inset-0 bg-gradient-to-t ${event.color} opacity-0 group-hover:opacity-20 transition-opacity duration-500`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t ${event.color} opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+                    />
                   </div>
+
+                  {/* Event Details */}
                   <div className="p-5 flex flex-col flex-grow">
                     <div className="flex items-center gap-2 mb-2">
-                      <event.icon className={`w-4 h-4 bg-gradient-to-r ${event.color} bg-clip-text text-transparent`} />
+                      <event.icon
+                        className={`w-4 h-4 bg-gradient-to-r ${event.color} bg-clip-text text-transparent`}
+                      />
                       <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                         {event.category}
                       </span>
@@ -231,7 +284,7 @@ const Trending = () => {
       </section>
 
       {/* Trending Themes Section */}
-      <section className="py-20 px-4 bg-muted/30">
+      <section className="py-20 px-4 bg-muted">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -248,7 +301,8 @@ const Trending = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Equal-height grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {trendingThemes.map((theme, index) => (
               <motion.div
                 key={index}
@@ -256,20 +310,33 @@ const Trending = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full"
               >
-                <Card className="p-6 text-center hover:shadow-xl transition-all duration-300 border-border/50 bg-card h-full hover:scale-105">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center">
-                    <Sparkles className="w-8 h-8 text-white" />
+                <Card className="overflow-hidden hover:shadow-2xl transition-all duration-500 border-border/50 bg-card rounded-2xl group hover:scale-105 h-full flex flex-col">
+                  {/* Image Section */}
+                  <div className="relative h-48 overflow-hidden flex-shrink-0">
+                    <img
+                      src={theme.image}
+                      alt={theme.name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-card-foreground">
-                    {theme.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-3">
-                    {theme.description}
-                  </p>
-                  <span className="inline-block px-3 py-1 bg-yellow-400/20 text-yellow-600 dark:text-yellow-400 rounded-full text-xs font-semibold">
-                    {theme.popularity}
-                  </span>
+
+                  {/* Text Section */}
+                  <div className="p-6 text-center flex flex-col justify-between flex-grow">
+                    <div>
+                      <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-yellow-500 transition-colors">
+                        {theme.name}
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-3">
+                        {theme.description}
+                      </p>
+                    </div>
+                    <span className="inline-block px-2 py-1 bg-yellow-400/20 text-yellow-600 dark:text-yellow-400 rounded-full text-xs font-semibold mt-auto">
+                      {theme.popularity}
+                    </span>
+                  </div>
                 </Card>
               </motion.div>
             ))}
@@ -305,17 +372,32 @@ const Trending = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card className="p-6 hover:shadow-xl transition-all duration-300 border-border/50 bg-card h-full group hover:border-yellow-400/50">
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 h-full">
+                    {/* Icon */}
                     <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
                       <trend.icon className="w-6 h-6 text-white" />
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-yellow-500 transition-colors">
-                        {trend.title}
-                      </h3>
-                      <p className="text-muted-foreground">
-                        {trend.description}
-                      </p>
+
+                    {/* Text + Progress Line */}
+                    <div className="flex flex-col justify-between flex-grow h-full">
+                      <div>
+                        <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-yellow-500 transition-colors">
+                          {trend.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-4">
+                          {trend.description}
+                        </p>
+                      </div>
+
+                      <motion.div className="w-full h-1 bg-muted rounded-full overflow-hidden mt-auto">
+                        <motion.div
+                          initial={{ width: "0%" }}
+                          whileInView={{ width: `${75 + index * 5}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: index * 0.2 }}
+                          className="h-full bg-gradient-to-r from-[hsl(45,90%,55%)] to-[hsl(280,60%,40%)]"
+                        />
+                      </motion.div>
                     </div>
                   </div>
                 </Card>
@@ -326,7 +408,7 @@ const Trending = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 gradient-luxury relative overflow-hidden">
+      {/* <section className="py-20 px-4 gradient-luxury relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 right-10 w-96 h-96 bg-yellow-400 rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 left-10 w-72 h-72 bg-purple-500 rounded-full blur-3xl"></div>
@@ -359,7 +441,7 @@ const Trending = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </div>

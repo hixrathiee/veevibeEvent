@@ -82,14 +82,6 @@ const Sports = () => {
             >
               <Link to="/booking">Plan Your Event</Link>
             </Button>
-            <Button
-              variant="default"
-              size="lg"
-              asChild
-              className="bg-sports-green text-primary-foreground hover:bg-sports-green/90"
-            >
-              <Link to="/contact">Learn More</Link>
-            </Button>
           </div>
         </div>
       </section>
