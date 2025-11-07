@@ -159,70 +159,99 @@ const About = () => {
         </motion.div>
       </motion.section>
 
-      {/* Author Section */}
-      <motion.section
-        className="py-20 px-4 bg-muted overflow-hidden"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={staggerContainer}
-      >
-        <div className="container mx-auto">
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-            variants={container}
-          >
-            <motion.div variants={fadeInUp}>
-              <motion.h2
-                className="text-4xl font-bold text-foreground mb-6"
-                variants={item}
-              >
-                Founder Message
-              </motion.h2>
-              <motion.div
-                className="space-y-4 font-sans text-muted-foreground"
-                variants={container}
-              >
-                {[/* ... */].map((paragraph, index) => (
-                  <motion.p
-                    key={index}
-                    variants={item}
-                    className="opacity-0"
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: "-20% 0px -20% 0px" }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                  >
-                    {paragraph}
-                  </motion.p>
-                ))}
-              </motion.div>
-            </motion.div>
-            <motion.div
-              className="relative"
-              variants={{
-                hidden: { opacity: 0, scale: 0.9 },
-                show: {
-                  opacity: 1,
-                  scale: 1,
-                  transition: {
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1],
-                    delay: 0.2
-                  }
-                }
-              }}
+      {/* Founder Message Section */}
+<motion.section
+  className="py-20 px-4 bg-muted overflow-hidden"
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true, amount: 0.3 }}
+  variants={staggerContainer}
+>
+  <div className="container mx-auto">
+    <motion.div
+      className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+      variants={container}
+    >
+      {/* Left side - Text */}
+      <motion.div variants={fadeInUp}>
+        <motion.h2
+          className="text-4xl font-bold text-foreground mb-6"
+          variants={item}
+        >
+          Founder Message
+        </motion.h2>
+
+        <motion.div
+          className="space-y-5 font-sans text-muted-foreground leading-relaxed text-lg"
+          variants={container}
+        >
+          {[
+            `I’ve walked through the golden ballrooms of Mumbai, attended star-studded concerts in Dubai, and witnessed the sparkle of chandeliers across India’s and other countries’ finest venues. They dazzled me, yes. But in that grandeur, I searched for something deeper: the fragrance of jasmine, the warmth of a mother’s blessing, the sound of temple bells at dawn. They were missing.`,
+
+            `And so, Veevibe was born.`,
+
+            `I wanted to create a world where luxury and tradition could hold hands. Where a bride could walk down an aisle adorned in a handcrafted Sabyasachi lehenga, yet still feel the grounding grace of turmeric and rose petals. Where a corporate gala could be as elegant as Paris, yet carry the soulful warmth of Hyderabad.`,
+
+            `Veevibe is my promise: that your celebration will not just shine, but breathe. That it will not only impress, but also move hearts. Because the true art of event design is not in decoration; it is in emotion.`,
+          ].map((paragraph, index) => (
+            <motion.p
+              key={index}
+              variants={item}
+              className="opacity-0"
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, margin: '-20% 0px -20% 0px' }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <motion.img
-                src={teamImage}
-                alt="Prestige Events Team"
-                className="rounded-lg shadow-luxury w-full h-auto"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
+              {paragraph}
+            </motion.p>
+          ))}
+        </motion.div>
+      </motion.div>
+
+     {/* Right side - Image & Author Info */}
+<motion.div
+  className="relative flex flex-col items-center lg:items-end text-center lg:text-right mx-auto lg:mx-0"
+  variants={{
+    hidden: { opacity: 0, scale: 0.9 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.2,
+      },
+    },
+  }}
+>
+  {/* Image */}
+  <motion.div className="overflow-hidden rounded-2xl shadow-lg w-full max-w-[340px] lg:max-w-[380px] mx-auto">
+    <motion.img
+      src="https://res.cloudinary.com/ddqplrtt2/image/upload/v1762240777/author_wwxe1i.jpg"
+      alt="Founder of Veevibe"
+      className="w-full h-[440px] lg:h-[500px] object-contain object-top"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
+    />
+  </motion.div>
+
+  {/* Author Name & Title */}
+  <div className="mt-5 lg:mt-6 ">
+    <h3 className="text-xl font-semibold text-foreground">
+      <span className="pb-1  border-primary">
+        - Raaga Veena Sajja
+      </span>
+    </h3>
+    <p className="text-muted-foreground text-sm mt-1 tracking-wide">
+      Founder, Veevibe
+    </p>
+  </div>
+</motion.div>
+
+    </motion.div>
+  </div>
+</motion.section>
+
 
       {/* Mission Section */}
       <section className="py-20 px-6 bg-gradient-to-b from-[#FAF7F0] to-white">

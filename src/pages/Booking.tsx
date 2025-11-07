@@ -48,7 +48,7 @@ const Booking = () => {
 
   const validateStep = (step: number): boolean => {
     const newErrors: Record<string, string> = {};
-    
+
     if (step === 1) {
       if (!formData.name.trim()) newErrors.name = "Name is required";
       if (!formData.email.trim()) {
@@ -60,7 +60,7 @@ const Booking = () => {
         newErrors.phone = "Please enter a valid phone number";
       }
     }
-    
+
     if (step === 2) {
       if (!formData.eventType) newErrors.eventType = "Event type is required";
       if (!formData.eventDate) {
@@ -77,7 +77,7 @@ const Booking = () => {
         newErrors.guestCount = "Guest count must be at least 1";
       }
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -96,26 +96,26 @@ const Booking = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateStep(1) || !validateStep(2)) {
       toast.error("Please fill in all required fields correctly");
       return;
     }
 
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Clear localStorage after successful submission
       localStorage.removeItem('bookingFormData');
-      
+
       toast.success("Booking request submitted! We'll contact you shortly to process payment.", {
         description: `Check your email (${formData.email}) for confirmation details.`,
         duration: 5000,
       });
-      
+
       // Reset form
       setFormData({
         name: "",
@@ -240,356 +240,357 @@ const Booking = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="p-8 md:p-12 shadow-2xl border-border/50 bg-card backdrop-blur-sm">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <AnimatePresence mode="wait">
-              {/* Personal Information */}
-              {currentStep === 1 && (
-              <motion.div
-                key="step1"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-card-foreground">
-                    Personal Information
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Full Name <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      className={`h-12 bg-background/50 border-border focus:border-yellow-400 transition-all ${
-                        errors.name ? "border-red-500" : ""
-                      }`}
-                    />
-                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Email Address <span className="text-red-500">*</span>
-                    </label>
-                    <Input
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="john@example.com"
-                      className={`h-12 bg-background/50 border-border focus:border-yellow-400 transition-all ${
-                        errors.email ? "border-red-500" : ""
-                      }`}
-                    />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Phone Number
-                    </label>
-                    <div className="relative">
-                      <Phone className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
-                      <Input
-                        name="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+91 2345670890"
-                        className={`h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all ${
-                          errors.phone ? "border-red-500" : ""
-                        }`}
-                      />
-                    </div>
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
-                  </div>
-                </div>
-                
-                <div className="flex justify-end mt-8">
-                  <Button 
-                    type="button"
-                    onClick={nextStep}
-                    variant="luxury"
-                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto text-sm sm:text-base"
-                  >
-                    <span className="hidden sm:inline">Next Step</span>
-                    <ArrowRight className="w-5 h-5 sm:ml-2" />
-                  </Button>
-                </div>
-              </motion.div>
-              )}
-
-              {/* Event Details */}
-              {currentStep === 2 && (
-              <motion.div
-                key="step2"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex items-center gap-3 mb-6 mt-8">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
-                    <Calendar className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-card-foreground">
-                    Event Details
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Event Type <span className="text-red-500">*</span>
-                    </label>
-                    <Select
-                      value={formData.eventType}
-                      onValueChange={(value) => handleSelectChange('eventType', value)}
+            <Card className="p-4 sm:p-8 md:p-12 shadow-2xl border-border/50 bg-card backdrop-blur-sm">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <AnimatePresence mode="wait">
+                  {/* Personal Information */}
+                  {currentStep === 1 && (
+                    <motion.div
+                      key="step1"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <SelectTrigger className={`h-12 bg-background/50 border-border focus:border-yellow-400 transition-all ${
-                        errors.eventType ? "border-red-500" : ""
-                      }`}>
-                        <SelectValue placeholder="Select event type" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-popover border-border">
-                        <SelectItem value="wedding">
-                          <div className="flex items-center gap-2">
-                            <Heart className="w-4 h-4" />
-                            <span>Wedding</span>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center">
+                          <Mail className="w-5 h-5 text-white" />
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-bold text-card-foreground">
+                          Personal Information
+                        </h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Full Name <span className="text-red-500">*</span>
+                          </label>
+                          <Input
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            placeholder="John Doe"
+                            className={`h-12 bg-background/50 border-border focus:border-yellow-400 transition-all ${errors.name ? "border-red-500" : ""
+                              }`}
+                          />
+                          {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Email Address <span className="text-red-500">*</span>
+                          </label>
+                          <Input
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="john@example.com"
+                            className={`h-12 bg-background/50 border-border focus:border-yellow-400 transition-all ${errors.email ? "border-red-500" : ""
+                              }`}
+                          />
+                          {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Phone Number
+                          </label>
+                          <div className="relative">
+                            <Phone className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              name="phone"
+                              type="tel"
+                              value={formData.phone}
+                              onChange={handleChange}
+                              placeholder="+91 2345670890"
+                              className={`h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all ${errors.phone ? "border-red-500" : ""
+                                }`}
+                            />
                           </div>
-                        </SelectItem>
-                        <SelectItem value="corporate">
-                          <div className="flex items-center gap-2">
-                            <Briefcase className="w-4 h-4" />
-                            <span>Corporate Event</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="entertainment">
-                          <div className="flex items-center gap-2">
-                            <Music className="w-4 h-4" />
-                            <span>Entertainment</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="sports">
-                          <div className="flex items-center gap-2">
-                            <Trophy className="w-4 h-4" />
-                            <span>Sports Event</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="birthday">
-                          <div className="flex items-center gap-2">
-                            <Cake className="w-4 h-4" />
-                            <span>Birthday Party</span>
-                          </div>
-                        </SelectItem>
-                        <SelectItem value="other">
-                          <div className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4" />
-                            <span>Other</span>
-                          </div>
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {errors.eventType && <p className="text-red-500 text-xs mt-1">{errors.eventType}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Event Date <span className="text-red-500">*</span>
-                    </label>
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground pointer-events-none" />
-                      <Input
-                        name="eventDate"
-                        type="date"
-                        value={formData.eventDate}
-                        onChange={handleChange}
-                        min={new Date().toISOString().split('T')[0]}
-                        className={`h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all ${
-                          errors.eventDate ? "border-red-500" : ""
-                        }`}
-                      />
-                    </div>
-                    {errors.eventDate && <p className="text-red-500 text-xs mt-1">{errors.eventDate}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Expected Guests
-                    </label>
-                    <div className="relative">
-                      <Users className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
-                      <Input
-                        name="guestCount"
-                        type="number"
-                        value={formData.guestCount}
-                        onChange={handleChange}
-                        placeholder="100"
-                        min="1"
-                        className={`h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all ${
-                          errors.guestCount ? "border-red-500" : ""
-                        }`}
-                      />
-                    </div>
-                    {errors.guestCount && <p className="text-red-500 text-xs mt-1">{errors.guestCount}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Budget Range
-                    </label>
-                    <div className="relative">
-                      <DollarSign className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground z-10 pointer-events-none" />
-                      <Select
-                        value={formData.budget}
-                        onValueChange={(value) => handleSelectChange('budget', value)}
-                      >
-                        <SelectTrigger className="h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all">
-                          <SelectValue placeholder="Select budget" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-popover border-border">
-                          <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                          <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
-                          <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
-                          <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
-                          <SelectItem value="100k+">$100,000+</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="block text-sm font-semibold text-card-foreground mb-2">
-                      Preferred Venue
-                    </label>
-                    <div className="relative">
-                      <MapPin className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
-                      <Input
-                        name="venue"
-                        value={formData.venue}
-                        onChange={handleChange}
-                        placeholder="Leave blank for venue recommendations"
-                        className="h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all"
-                      />
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
-                  <Button 
-                    type="button"
-                    onClick={prevStep}
-                    variant="outline"
-                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-2 sm:order-1 text-sm sm:text-base"
-                  >
-                    <ArrowLeft className="w-5 h-5 sm:mr-2" />
-                    <span className="hidden sm:inline">Previous</span>
-                  </Button>
-                  <Button 
-                    type="button"
-                    onClick={nextStep}
-                    variant="luxury"
-                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-1 sm:order-2 text-sm sm:text-base"
-                  >
-                    <span className="hidden sm:inline">Next Step</span>
-                    <ArrowRight className="w-5 h-5 sm:ml-2" />
-                  </Button>
-                </div>
-              </motion.div>
-              )}
+                          {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                        </div>
+                      </div>
 
-              {/* Additional Requirements */}
-              {currentStep === 3 && (
-              <motion.div
-                key="step3"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex items-center gap-3 mb-4 mt-8">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
-                    <FileText className="w-5 h-5 text-white" />
-                  </div>
-                  <label className="text-2xl font-bold text-card-foreground">
-                    Special Requirements
-                  </label>
-                </div>
-                <Textarea
-                  name="requirements"
-                  value={formData.requirements}
-                  onChange={handleChange}
-                  placeholder="Tell us about your vision, special requests, dietary requirements, accessibility needs, entertainment preferences, etc."
-                  rows={6}
-                  className="bg-background/50 border-border focus:border-yellow-400 transition-all resize-none"
-                />
+                      <div className="flex justify-end mt-8">
+                        <Button
+                          type="button"
+                          onClick={nextStep}
+                          variant="luxury"
+                          className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto text-sm sm:text-base"
+                        >
+                          <span className="hidden sm:inline">Next Step</span>
+                          <ArrowRight className="w-5 h-5 sm:ml-2" />
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
 
-                {/* Payment Info Notice */}
-                <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-6 rounded-xl border-2 border-yellow-200 dark:border-yellow-800 mt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-card-foreground mb-2 text-lg">What Happens Next?</h4>
-                      <ul className="text-sm text-muted-foreground font-sans space-y-2">
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-500" />
-                          <span>Our team reviews your request within 24 hours</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-500" />
-                          <span>Receive a detailed proposal with pricing</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-green-500" />
-                          <span>Secure payment via credit card or bank transfer</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+                  {/* Event Details */}
+                  {currentStep === 2 && (
+                    <motion.div
+                      key="step2"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="flex items-center gap-3 mb-6 mt-8">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+                          <Calendar className="w-5 h-5 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-card-foreground">
+                          Event Details
+                        </h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Event Type <span className="text-red-500">*</span>
+                          </label>
+                          <Select
+                            value={formData.eventType}
+                            onValueChange={(value) => handleSelectChange('eventType', value)}
+                          >
+                            <SelectTrigger className={`h-12 bg-background/50 border-border focus:border-yellow-400 transition-all ${errors.eventType ? "border-red-500" : ""
+                              }`}>
+                              <SelectValue placeholder="Select event type" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-popover border-border">
+                              <SelectItem value="wedding">
+                                <div className="flex items-center gap-2">
+                                  <Heart className="w-4 h-4" />
+                                  <span>Wedding</span>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="corporate">
+                                <div className="flex items-center gap-2">
+                                  <Briefcase className="w-4 h-4" />
+                                  <span>Corporate Event</span>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="entertainment">
+                                <div className="flex items-center gap-2">
+                                  <Music className="w-4 h-4" />
+                                  <span>Entertainment</span>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="sports">
+                                <div className="flex items-center gap-2">
+                                  <Trophy className="w-4 h-4" />
+                                  <span>Sports Event</span>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="birthday">
+                                <div className="flex items-center gap-2">
+                                  <Cake className="w-4 h-4" />
+                                  <span>Birthday Party</span>
+                                </div>
+                              </SelectItem>
+                              <SelectItem value="other">
+                                <div className="flex items-center gap-2">
+                                  <Sparkles className="w-4 h-4" />
+                                  <span>Other</span>
+                                </div>
+                              </SelectItem>
+                            </SelectContent>
+                          </Select>
+                          {errors.eventType && <p className="text-red-500 text-xs mt-1">{errors.eventType}</p>}
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Event Date <span className="text-red-500">*</span>
+                          </label>
+                          <div className="relative">
+                            <Calendar className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground pointer-events-none" />
+                            <Input
+                              name="eventDate"
+                              type="date"
+                              value={formData.eventDate}
+                              onChange={handleChange}
+                              min={new Date().toISOString().split('T')[0]}
+                              className={`h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all ${errors.eventDate ? "border-red-500" : ""
+                                }`}
+                            />
+                          </div>
+                          {errors.eventDate && <p className="text-red-500 text-xs mt-1">{errors.eventDate}</p>}
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Expected Guests
+                          </label>
+                          <div className="relative">
+                            <Users className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              name="guestCount"
+                              type="number"
+                              value={formData.guestCount}
+                              onChange={handleChange}
+                              placeholder="100"
+                              min="1"
+                              className={`h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all ${errors.guestCount ? "border-red-500" : ""
+                                }`}
+                            />
+                          </div>
+                          {errors.guestCount && <p className="text-red-500 text-xs mt-1">{errors.guestCount}</p>}
+                        </div>
+                        <div>
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Budget Range
+                          </label>
+                          <div className="relative">
+                            <DollarSign className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground z-10 pointer-events-none" />
+                            <Select
+                              value={formData.budget}
+                              onValueChange={(value) => handleSelectChange('budget', value)}
+                            >
+                              <SelectTrigger className="h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all">
+                                <SelectValue placeholder="Select budget" />
+                              </SelectTrigger>
+                              <SelectContent className="bg-popover border-border">
+                                <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
+                                <SelectItem value="10k-25k">$10,000 - $25,000</SelectItem>
+                                <SelectItem value="25k-50k">$25,000 - $50,000</SelectItem>
+                                <SelectItem value="50k-100k">$50,000 - $100,000</SelectItem>
+                                <SelectItem value="100k+">$100,000+</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                        <div className="md:col-span-2">
+                          <label className="block text-sm font-semibold text-card-foreground mb-2">
+                            Preferred Venue
+                          </label>
+                          <div className="relative">
+                            <MapPin className="absolute left-3 top-3.5 h-5 w-5 text-muted-foreground" />
+                            <Input
+                              name="venue"
+                              value={formData.venue}
+                              onChange={handleChange}
+                              placeholder="Leave blank for venue recommendations"
+                              className="h-12 pl-11 bg-background/50 border-border focus:border-yellow-400 transition-all"
+                            />
+                          </div>
+                        </div>
+                      </div>
 
-                <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
-                  <Button 
-                    type="button"
-                    onClick={prevStep}
-                    variant="outline"
-                    className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-2 sm:order-1 text-sm sm:text-base"
-                  >
-                    <ArrowLeft className="w-5 h-5 sm:mr-2" />
-                    <span className="hidden sm:inline">Previous</span>
-                  </Button>
-                  <Button 
-                    variant="luxury" 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="h-11 sm:h-14 px-4 sm:px-12 text-sm sm:text-lg font-bold shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-1 sm:order-2"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        <span className="hidden sm:inline sm:ml-2">Submitting...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-5 h-5" />
-                        <span className="hidden sm:inline sm:ml-2">Submit Booking Request</span>
-                      </>
-                    )}
-                  </Button>
-                </div>
-                <p className="text-xs text-muted-foreground mt-4 text-center">
-                  By submitting, you agree to our terms and privacy policy
-                </p>
-              </motion.div>
-              )}
-              </AnimatePresence>
-            </form>
-          </Card>
+                      <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
+                        <Button
+                          type="button"
+                          onClick={prevStep}
+                          variant="outline"
+                          className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-2 sm:order-1 text-sm sm:text-base"
+                        >
+                          <ArrowLeft className="w-5 h-5 sm:mr-2" />
+                          <span className="hidden sm:inline">Previous</span>
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={nextStep}
+                          variant="luxury"
+                          className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-1 sm:order-2 text-sm sm:text-base"
+                        >
+                          <span className="hidden sm:inline">Next Step</span>
+                          <ArrowRight className="w-5 h-5 sm:ml-2" />
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Additional Requirements */}
+                  {currentStep === 3 && (
+                    <motion.div
+                      key="step3"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="flex items-center gap-3 mb-4 mt-8">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
+                          <FileText className="w-5 h-5 text-white" />
+                        </div>
+                        <label className="text-xl md:text-2xl font-bold text-card-foreground">
+                          Special Requirements
+                        </label>
+                      </div>
+                      <Textarea
+                        name="requirements"
+                        value={formData.requirements}
+                        onChange={handleChange}
+                        placeholder="Tell us about your vision, special requests, dietary requirements, accessibility needs, entertainment preferences, etc."
+                        rows={6}
+                        className="bg-background/50 border-border focus:border-yellow-400 transition-all resize-none"
+                      />
+
+                      {/* Payment Info Notice */}
+                      <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 p-4 md:p-6 rounded-xl border-2 border-yellow-200 dark:border-yellow-800 mt-6">
+                        <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 text-left">
+
+                          {/* Clock Icon */}
+                          <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center flex-shrink-0 mx-12  md:mx-0">
+                            <Clock className="w-6 h-6 text-white" />
+                          </div>
+
+                          {/* Content */}
+                          <div>
+                            <h4 className="font-bold text-card-foreground mb-2 text-base md:text-lg mx-3">
+                              What Happens Next?
+                            </h4>
+                            <ul className="text-sm text-muted-foreground font-sans space-y-2">
+                              <li className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                <span>Our team reviews your request within 24 hours</span>
+                              </li>
+                              <li className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                <span>Receive a detailed proposal with pricing</span>
+                              </li>
+                              <li className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                <span>Secure payment via credit card or bank transfer</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div className="flex flex-col sm:flex-row justify-between gap-3 mt-8">
+                        <Button
+                          type="button"
+                          onClick={prevStep}
+                          variant="outline"
+                          className="h-11 sm:h-12 px-4 sm:px-8 w-full sm:w-auto order-2 sm:order-1 text-sm sm:text-base"
+                        >
+                          <ArrowLeft className="w-5 h-5 sm:mr-2" />
+                          <span className="hidden sm:inline">Previous</span>
+                        </Button>
+                        <Button
+                          variant="luxury"
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="h-11 sm:h-14 px-4 sm:px-12 text-sm sm:text-lg font-bold shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto order-1 sm:order-2"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                              <span className="hidden sm:inline sm:ml-2">Submitting...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Sparkles className="w-5 h-5" />
+                              <span className="hidden sm:inline sm:ml-2">Submit Booking Request</span>
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-4 text-center">
+                        By submitting, you agree to our terms and privacy policy
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </form>
+            </Card>
           </motion.div>
 
           {/* Trust Badges */}
@@ -616,7 +617,7 @@ const Booking = () => {
           </motion.div>
         </div>
       </section>
-      
+
       <Footer />
     </div>
   );
