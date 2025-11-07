@@ -364,7 +364,7 @@ const Entertainment = () => {
               <div className="absolute inset-[1px] bg-white rounded-2xl"></div>
 
               {/* Step Circle */}
-              <div className="relative z-10 w-12 h-12 rounded-full bg-gradient-to-r from-[#A770C2] to-[#7d24ad] flex items-center justify-center text-primary-foreground font-bold text-lg shadow-md text-white font-bold text-lg flex items-center justify-center shadow-md mb-3">
+              <div className="relative z-10 w-12 h-12 rounded-full bg-gradient-to-r from-[#A770C2] to-[#7d24ad] flex items-center justify-center text-primary-foreground  text-white font-bold text-lg  shadow-md mb-3">
                 {process.step}
               </div>
 
