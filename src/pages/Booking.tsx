@@ -202,19 +202,19 @@ const Booking = () => {
                   <React.Fragment key={step.num}>
                     <div className="flex flex-col items-center flex-shrink-0 relative">
                       <div
-                        className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 z-10 ${
+                        className={`w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold transition-all duration-300 z-10 ${
                           currentStep >= step.num
                             ? "bg-gradient-to-r from-yellow-400 to-yellow-600 text-white shadow-lg scale-110"
                             : "bg-muted text-muted-foreground"
                         }`}
                       >
                         {currentStep > step.num ? (
-                          <CheckCircle2 className="w-6 h-6" />
+                          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                         ) : (
-                          <step.icon className="w-6 h-6" />
+                          <step.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                         )}
                       </div>
-                      <span className={`text-xs mt-2 font-medium whitespace-nowrap ${
+                      <span className={`text-[10px] xs:text-xs mt-1.5 font-medium whitespace-nowrap ${
                         currentStep >= step.num ? "text-foreground" : "text-muted-foreground"
                       }`}>
                         {step.label}
@@ -222,7 +222,7 @@ const Booking = () => {
                     </div>
                     {index < 2 && (
                       <div 
-                        className={`h-1 flex-1 mx-2 sm:mx-4 max-w-[100px] sm:max-w-[150px] transition-all duration-300 ${
+                        className={`h-1 flex-1 mx-1 sm:mx-2 md:mx-4 max-w-[50px] sm:max-w-[100px] md:max-w-[150px] transition-all duration-300 ${
                           currentStep > step.num 
                             ? "bg-gradient-to-r from-yellow-400 to-yellow-600" 
                             : "bg-muted"
@@ -256,7 +256,7 @@ const Booking = () => {
                         <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-yellow-400 to-yellow-600 flex items-center justify-center">
                           <Mail className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-card-foreground">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-card-foreground">
                           Personal Information
                         </h3>
                       </div>
@@ -337,7 +337,7 @@ const Booking = () => {
                         <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
                           <Calendar className="w-5 h-5 text-white" />
                         </div>
-                        <h3 className="text-2xl font-bold text-card-foreground">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-card-foreground">
                           Event Details
                         </h3>
                       </div>
@@ -508,7 +508,7 @@ const Booking = () => {
                         <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center">
                           <FileText className="w-5 h-5 text-white" />
                         </div>
-                        <label className="text-xl md:text-2xl font-bold text-card-foreground">
+                        <label className="text-lg sm:text-xl md:text-2xl font-bold text-card-foreground">
                           Special Requirements
                         </label>
                       </div>
@@ -532,7 +532,7 @@ const Booking = () => {
 
                           {/* Content */}
                           <div>
-                            <h4 className="font-bold text-card-foreground mb-2 text-base md:text-lg mx-3">
+                            <h4 className="font-bold text-card-foreground mb-2 text-sm sm:text-base md:text-lg mx-3">
                               What Happens Next?
                             </h4>
                             <ul className="text-sm text-muted-foreground font-sans space-y-2">
