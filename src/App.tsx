@@ -14,6 +14,7 @@ import Corporate from "./pages/events/Corporate";
 import Entertainment from "./pages/events/Entertainment";
 import Sports from "./pages/events/Sports";
 import NotFound from "./pages/NotFound";
+import Events from "./pages/Events";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/events" element={<Events />} /> 
             <Route path="/trending" element={<Trending />} />
             <Route path="/events/wedding" element={<Wedding />} />
             <Route path="/events/corporate" element={<Corporate />} />

@@ -13,6 +13,7 @@ import {
   Lightbulb,
 } from "lucide-react";
 import corporateHero from "@/assets/corporate-hero.jpg";
+import SubNavbar from "@/components/SubNavbar";
 
 const Corporate = () => {
   const services = [
@@ -64,6 +65,7 @@ const Corporate = () => {
   return (
     <div className="h-screen bg-background">
       <Navbar />
+      <SubNavbar />
       <WhatsAppButton />
 
       {/* Hero Section */}

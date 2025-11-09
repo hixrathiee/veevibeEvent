@@ -8,6 +8,7 @@ import { Heart, Camera, Music, Utensils, Flower, Sparkles } from "lucide-react";
 import weddingHero from "@/assets/wedding-hero.jpg";
 import "./event.css";
 import ProcessSteps from "./ProcessSteps";
+import SubNavbar from "@/components/SubNavbar";
 
 const Wedding = () => {
   const services = [
@@ -82,6 +83,7 @@ const Wedding = () => {
   return (
     <div className="h-screen bg-background">
       <Navbar />
+      <SubNavbar />
       <WhatsAppButton />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 h-3/4 flex items-center justify-center overflow-hidden">
