@@ -1,13 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,14 +13,8 @@ const Navbar = () => {
     { path: "/", label: "Home" },
     { path: "/trending", label: "Trending" },
     { path: "/gallery", label: "Gallery" },
+    { path: "/events", label: "Events" }, 
     { path: "/about", label: "About" },
-  ];
-
-  const eventLinks = [
-    { path: "/events/wedding", label: "Wedding" },
-    { path: "/events/corporate", label: "Corporate" },
-    { path: "/events/entertainment", label: "Entertainment" },
-    { path: "/events/sports", label: "Sports" },
   ];
 
   return (
@@ -40,57 +28,16 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 cursor-pointer">
-            {navLinks.slice(0, 3).map((link) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`text-sm font-medium transition-elegant ${isActive(link.path)
-                  ? "text-[#D6A419]"
-                  : "text-foreground hover:text-[#D6A419]"
-                  }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            {/* Events Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1 text-sm font-medium text-foreground hover:text-[#D6A419] transition-colors duration-300 ease-in-out border-none outline-none">
-                Events
-                <ChevronDown className="h-4 w-4 transition-transform duration-300 group-hover:rotate-180" />
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent
-                className="bg-popover border border-border z-50 mt-2 rounded-xl shadow-lg animate-fade-slide"
-                sideOffset={5}
-              >
-                {eventLinks.map((link) => {
-                  const active = isActive(link.path);
-                  return (
-                    <DropdownMenuItem
-                      key={link.path}
-                      asChild
-                      className={`cursor-pointer px-4 py-2 text-sm rounded-lg transition-all duration-300 ease-in-out hover:text-[#D6A419]
-            ${active
-                          ? "text-[#D6A419] bg-[#D6A419]/10 font-semibold"
-                          : "text-foreground hover:text-[#D6A419] hover:bg-[#D6A419]/10"
-                        }`}
-                    >
-                      <Link to={link.path}>{link.label}</Link>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {navLinks.slice(3).map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-medium transition-elegant ${isActive(link.path)
-                  ? "text-[#D6A419]"
-                  : "text-foreground hover:text-[#D6A419]"
-                  }`}
+                className={`text-sm font-medium transition-elegant ${
+                  isActive(link.path) ||
+                  (link.path === "/events" && location.pathname.startsWith("/events"))
+                    ? "text-[#D6A419]"
+                    : "text-foreground hover:text-[#D6A419]"
+                }`}
               >
                 {link.label}
               </Link>
@@ -118,48 +65,17 @@ const Navbar = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`text-base font-medium transition-all duration-300 ${isActive(link.path)
+                  className={`text-base font-medium transition-all duration-300 ${
+                    isActive(link.path) ||
+                    (link.path === "/events" && location.pathname.startsWith("/events"))
                       ? "text-[#D6A419]"
                       : "text-foreground hover:text-[#D6A419]"
-                    }`}
+                  }`}
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-
-              {/* Events Dropdown for Mobile */}
-              <details
-                className="group cursor-pointer"
-                open={location.pathname.startsWith("/events")}
-              >
-                <summary className="flex items-center gap-1 text-base font-medium text-foreground transition-colors duration-300">
-                  Events
-                  <ChevronDown className="h-4 w-4 transform group-open:rotate-180 transition-transform duration-300" />
-                </summary>
-
-                <div className="mt-2 ml-4 flex flex-col space-y-2 border-l border-border pl-4">
-                  {eventLinks.map((link) => (
-                    <Link
-                      key={link.path}
-                      to={link.path}
-                      className={`text-sm transition-all duration-300 ${isActive(link.path)
-                          ? "text-[#D6A419] font-semibold"
-                          : "text-muted-foreground hover:text-[#D6A419]"
-                        }`}
-                      onClick={() => {
-                        setIsOpen(false); // close entire mobile menu
-                        // Close dropdown manually
-                        const detailsEl = document.querySelector("details");
-                        if (detailsEl) (detailsEl as HTMLDetailsElement).open = false;
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </details>
-
 
               {/* Book Now Button */}
               <Button
@@ -175,7 +91,6 @@ const Navbar = () => {
             </div>
           </div>
         )}
-
       </div>
     </nav>
   );

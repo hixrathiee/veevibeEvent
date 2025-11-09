@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Music, Mic, PartyPopper, Film, Theater, Sparkle } from "lucide-react";
 import entertainmentHero from "@/assets/entertainment-hero.jpg";
+import SubNavbar from "@/components/SubNavbar";
 
 const Entertainment = () => {
   const services = [
@@ -56,6 +57,7 @@ const Entertainment = () => {
   return (
     <div className="h-screen bg-background">
       <Navbar />
+      <SubNavbar />
       <WhatsAppButton />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 h-3/4 flex items-center justify-center overflow-hidden">

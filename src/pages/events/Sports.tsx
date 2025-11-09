@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Trophy, Medal, Flag, Users, Target, Award } from "lucide-react";
 import sportsHero from "@/assets/sports-hero.jpg";
+import SubNavbar from "@/components/SubNavbar";
 
 const Sports = () => {
   const services = [
@@ -56,6 +57,7 @@ const Sports = () => {
   return (
     <div className="h-screen bg-background">
       <Navbar />
+      <SubNavbar />
       <WhatsAppButton />
 
       {/* Hero Section with Tricolor Theme */}
