@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import Booking from "./pages/Booking";
 import Trending from "./pages/Trending";
+import EventDetails from "./pages/EventDetails";
 import Wedding from "./pages/events/Wedding";
 import Corporate from "./pages/events/Corporate";
 import Entertainment from "./pages/events/Entertainment";
@@ -36,6 +37,8 @@ const App = () => (
             <Route path="/events/corporate" element={<Corporate />} />
             <Route path="/events/entertainment" element={<Entertainment />} />
             <Route path="/events/sports" element={<Sports />} />
+            <Route path="/event/theme/:id" element={<EventDetails />} />
+            <Route path="/event/:id" element={<EventDetails />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -17,7 +17,6 @@ interface ImageData {
 const Gallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [loading, setLoading] = useState(true);
   const [images, setImages] = useState<ImageData[]>([]);
   
   // Initial image data
@@ -26,14 +25,12 @@ const Gallery = () => {
     { 
       src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
       title: "Grand Wedding Ceremony", 
-      category: "Wedding",
-      loaded: false
+      category: "Wedding"
     },
     { 
       src: "https://images.unsplash.com/photo-1513151233557-df62cb53cdc4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
       title: "Luxury Wedding Reception", 
-      category: "Wedding",
-      loaded: false
+      category: "Wedding"
     },
     { 
       src: "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
@@ -85,7 +82,7 @@ const Gallery = () => {
       category: "Entertainment" 
     },
     { 
-      src: "https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80", 
+      src: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", 
       title: "Celebrity Performance", 
       category: "Entertainment" 
     },
@@ -135,80 +132,17 @@ const Gallery = () => {
     }
   ];
 
-  // Load initial images on component mount
+  // Initialize images on component mount
   useEffect(() => {
-    setLoading(true);
-    
-    // Preload images with better error handling
-    const preloadImages = async () => {
-      const imagePromises = initialImages.map(async (img, idx) => {
-        return new Promise<void>((resolve) => {
-          const image = new Image();
-          image.onload = () => {
-            setImages(prev => {
-              const newImages = [...prev];
-              if (newImages[idx]) {
-                newImages[idx] = {
-                  ...newImages[idx],
-                  loaded: true,
-                  aspectRatio: image.naturalWidth / image.naturalHeight
-                };
-              }
-              return newImages;
-            });
-            resolve();
-          };
-          image.onerror = () => {
-            setImages(prev => {
-              const newImages = [...prev];
-              if (newImages[idx]) {
-                newImages[idx] = {
-                  ...newImages[idx],
-                  loaded: true,
-                  src: `https://placehold.co/800x600/1a1a1a/ffffff?text=${encodeURIComponent(img.title || 'Image')}`,
-                  aspectRatio: 4/3
-                };
-              }
-              return newImages;
-            });
-            resolve();
-          };
-          image.src = img.src;
-        });
-      });
-
-      await Promise.all(imagePromises);
-      setLoading(false);
-    };
-
-    // Set initial state with dynamic aspect ratio calculation
-    setImages(initialImages.map(img => {
-      // Create a temporary image to calculate aspect ratio
-      const tempImg = new Image();
-      tempImg.src = img.src;
-      const aspectRatio = tempImg.naturalWidth > 0 ? 
-        tempImg.naturalWidth / tempImg.naturalHeight : 
-        4/3; // Fallback ratio
-      
-      return {
-        ...img,
-        loaded: false,
-        aspectRatio: Math.min(Math.max(0.5, aspectRatio), 2) // Constrain between 0.5 and 2
-      };
+    const initializedImages = initialImages.map(img => ({
+      ...img,
+      loaded: false,
+      aspectRatio: 4/3 // Default aspect ratio
     }));
-    
-    // Start preloading
-    preloadImages();
-    
-    // Set a timeout to ensure loading state doesn't get stuck
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000); // 3 second timeout
-    
-    return () => clearTimeout(timer);
+    setImages(initializedImages);
   }, []);
-  
-  // Handle image load and get dimensions
+
+  // Handle image load
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>, index: number) => {
     const img = e.target as HTMLImageElement;
     const aspectRatio = img.naturalWidth / img.naturalHeight;
@@ -219,9 +153,7 @@ const Gallery = () => {
         newImages[index] = { 
           ...newImages[index],
           loaded: true,
-          aspectRatio,
-          // Ensure we have a valid source
-          src: img.src || newImages[index].src
+          aspectRatio: Math.min(Math.max(0.5, aspectRatio), 2) // Constrain between 0.5 and 2
         };
       }
       return newImages;
@@ -240,7 +172,7 @@ const Gallery = () => {
     if (img.src !== fallbackSrc) {
       img.src = fallbackSrc;
       
-      // Force update the images state with the fallback source
+      // Update the images state with the fallback source
       setImages(prev => {
         const newImages = [...prev];
         if (newImages[index]) {
@@ -258,13 +190,16 @@ const Gallery = () => {
 
   const categories = ["All", "Wedding", "Corporate", "Entertainment", "Sports", "Special"];
 
-  // Filtered Images
+  // Filtered Images - Reset loading state when category changes
   const filteredImages = useMemo(() => {
-    return activeCategory === "All"
+    const filtered = activeCategory === "All"
       ? images
       : images.filter((img) => img.category === activeCategory);
+    
+    // Reset loaded state for filtered images to ensure they reload properly
+    return filtered.map(img => ({ ...img }));
   }, [images, activeCategory]);
-  
+
   const location = useLocation();
 
   useEffect(() => {
@@ -332,89 +267,59 @@ const Gallery = () => {
       {/* Gallery Grid */}
       <section className="py-10 px-4 max-w-7xl mx-auto bg-background">
         <div className="container mx-auto">
-          {loading ? (
-            <div className="col-span-full flex justify-center items-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-            </div>
-          ) : filteredImages.length === 0 ? (
+          {filteredImages.length === 0 ? (
             <p className="text-center text-muted-foreground text-lg">
               No events found in this category.
             </p>
           ) : (
             <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
-              {filteredImages.map((image, index) => {
-                // Determine the row span based on index to create the masonry effect
-                const rowSpan = index % 5 === 0 ? 'sm:row-span-2' : 'sm:row-span-1';
-                const colSpan = index % 7 === 0 ? 'sm:col-span-2' : 'sm:col-span-1';
-                
-                return (
-                  <div
-                    key={index}
-                    className="group relative break-inside-avoid overflow-hidden rounded-lg cursor-pointer shadow-elegant hover:shadow-luxury transition-elegant mb-4"
-                    onClick={() => setSelectedImage(image.src)}
+              {filteredImages.map((image, index) => (
+                <div
+                  key={`${image.category}-${image.title}-${index}`}
+                  className="group relative break-inside-avoid overflow-hidden rounded-lg cursor-pointer shadow-elegant hover:shadow-luxury transition-elegant mb-4"
+                  onClick={() => setSelectedImage(image.src)}
+                >
+                  <div 
+                    className="w-full overflow-hidden relative bg-gray-100 dark:bg-gray-800"
                     style={{
-                      aspectRatio: image.aspectRatio ? 'auto' : '1',
-                      height: image.aspectRatio ? 'auto' : '250px'
+                      aspectRatio: image.aspectRatio || '4/3',
                     }}
                   >
-                    <div 
-                      className="w-full overflow-hidden relative" 
-                      style={{
-                        backgroundColor: '#f3f4f6',
-                        aspectRatio: image.aspectRatio ? `${image.aspectRatio}` : '4/3',
-                        maxHeight: '500px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}
-                    >
-                      {!image.loaded && (
-                        <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 animate-pulse"></div>
-                      )}
-                      {!image.loaded ? (
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200 dark:bg-gray-800">
-                          <div className="animate-pulse flex flex-col items-center">
-                            <div className="h-4 w-4 rounded-full bg-gray-400 mb-2"></div>
-                            <span className="text-xs text-gray-500">Loading...</span>
-                          </div>
+                    {!image.loaded && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="animate-pulse flex flex-col items-center">
+                          <div className="h-4 w-4 rounded-full bg-gray-400 mb-2"></div>
+                          <span className="text-xs text-gray-500">Loading...</span>
                         </div>
-                      ) : null}
-                      <img
-                        key={`${index}-${image.src}`}
-                        src={image.src}
-                        alt={image.title}
-                        className={`w-full h-full transition-all duration-300 ease-in-out group-hover:scale-105 ${
-                          image.loaded ? 'opacity-100' : 'opacity-0'
-                        }`}
-                        loading="lazy"
-                        style={{
-                          position: 'absolute',
-                          top: '50%',
-                          left: '50%',
-                          width: 'auto',
-                          height: 'auto',
-                          maxWidth: '100%',
-                          maxHeight: '100%',
-                          transform: 'translate(-50%, -50%)',
-                          objectFit: 'contain',
-                          transition: 'opacity 0.3s ease-in-out',
-                          backgroundColor: image.loaded ? 'transparent' : '#f3f4f6'
-                        }}
-                        onLoad={(e) => handleImageLoad(e, index)}
-                        onError={(e) => handleImageError(e, index)}
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                      <p className="text-xs text-yellow-400 font-sans uppercase tracking-wider mb-1">
-                        {image.category}
-                      </p>
-                      <h3 className="text-sm font-medium text-white">
-                        {image.title}
-                      </h3>
-                    </div>
+                      </div>
+                    )}
+                    <img
+                      src={image.src}
+                      alt={image.title}
+                      className={`w-full h-full transition-all duration-300 ease-in-out group-hover:scale-105 ${
+                        image.loaded ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      loading="lazy"
+                      style={{
+                        objectFit: 'cover',
+                        width: '100%',
+                        height: '100%',
+                        transition: 'opacity 0.3s ease-in-out',
+                      }}
+                      onLoad={(e) => handleImageLoad(e, images.findIndex(img => img.src === image.src && img.title === image.title))}
+                      onError={(e) => handleImageError(e, images.findIndex(img => img.src === image.src && img.title === image.title))}
+                    />
                   </div>
-                );
-              })}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                    <p className="text-xs text-yellow-400 font-sans uppercase tracking-wider mb-1">
+                      {image.category}
+                    </p>
+                    <h3 className="text-sm font-medium text-white">
+                      {image.title}
+                    </h3>
+                  </div>
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -437,7 +342,6 @@ const Gallery = () => {
                   alt="Full size preview"
                   className="max-w-full max-h-[75vh] object-contain rounded-lg"
                   onError={(e) => {
-                    // Fallback to a placeholder if image fails to load
                     e.currentTarget.src = 'https://placehold.co/1200x800/1a1a1a/ffffff?text=Image+Not+Available';
                   }}
                 />

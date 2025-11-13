@@ -371,7 +371,13 @@ const Trending = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9, duration: 0.8 }}
             >
-        
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white hover:from-yellow-500 hover:to-orange-600 shadow-lg shadow-yellow-500/20 hover:shadow-yellow-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                Explore Trends
+                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </motion.div>
 
           </motion.div>
@@ -795,6 +801,12 @@ const Trending = () => {
             ))}
           </div>
 
+          <div className="mt-12 text-center">
+            <Button variant="outline" className="px-8 py-6 rounded-full border-2 border-slate-200 hover:border-slate-300 bg-white/80 backdrop-blur-sm text-slate-700 hover:bg-white hover:text-slate-900 transition-all">
+              <Sparkles className="w-5 h-5 mr-2" />
+              Explore All Themes
+            </Button>
+          </div>
         </div>
       </section>
 
