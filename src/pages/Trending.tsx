@@ -416,29 +416,6 @@ const Trending = () => {
 
             {/* Trending Events Tab */}
             <TabsContent value="events" className="space-y-8">
-              {/* Controls */}
-              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-                <div className="flex flex-wrap gap-2 justify-center w-full lg:justify-start">
-                  {filters.map((filter) => (
-                    <Badge
-                      key={filter.key}
-                      variant={activeFilter === filter.key ? "default" : "outline"}
-                      className={`px-4 py-2 cursor-pointer transition-all ${
-                        activeFilter === filter.key 
-                          ? "bg-gradient-to-r from-yellow-400 to-orange-400 text-white border-0" 
-                          : "hover:bg-muted"
-                      }`}
-                      onClick={() => setActiveFilter(filter.key)}
-                    >
-                      {filter.label}
-                      <span className="ml-2 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">
-                        {filter.count}
-                      </span>
-                    </Badge>
-                  ))}
-                </div>                
-              </div>
-
               {/* Events Grid */}
               <AnimatePresence>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -461,13 +438,6 @@ const Trending = () => {
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                           
-                          {/* Trending Badge */}
-                          {event.trending === "hot" && (
-                            <Badge className="absolute top-3 left-3 bg-red-500 border-0">
-                              <Flame className="w-3 h-3 mr-1" />
-                              Hot
-                            </Badge>
-                          )}
                           
                           {/* Action Buttons Removed */}
 
