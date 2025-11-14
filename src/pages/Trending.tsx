@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 
 const Trending = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [sortBy, setSortBy] = useState("popularity");
   const [savedEvents, setSavedEvents] = useState(new Set());
 
   const trendingEvents = [
@@ -243,14 +242,6 @@ const Trending = () => {
     .filter(event => 
       activeFilter === "all" || event.trending === activeFilter
     )
-    .sort((a, b) => {
-      switch (sortBy) {
-        case "popularity": return b.popularity - a.popularity;
-        case "bookings": return b.bookings - a.bookings;
-        case "views": return b.views - a.views;
-        default: return 0;
-      }
-    });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50/30">
@@ -410,7 +401,7 @@ const Trending = () => {
       <section className="py-12 md:py-20 px-4 relative bg-white/50 backdrop-blur-sm">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
         <div className="relative">
-          <div className="container mx-auto max-w-7xl">
+          <div className="mx-auto w-full max-w-[97%] sm:max-w-7xl">
           <Tabs defaultValue="events" className="space-y-12">
             <TabsList className="grid w-full grid-cols-2 lg:max-w-md mx-auto p-1 bg-muted/50 rounded-2xl">
               <TabsTrigger value="events" className="rounded-xl data-[state=active]:bg-white data-[state=active]:shadow-lg">
@@ -427,7 +418,7 @@ const Trending = () => {
             <TabsContent value="events" className="space-y-8">
               {/* Controls */}
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center w-full lg:justify-start">
                   {filters.map((filter) => (
                     <Badge
                       key={filter.key}
@@ -445,20 +436,7 @@ const Trending = () => {
                       </span>
                     </Badge>
                   ))}
-                </div>
-                
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <Filter className="w-4 h-4" />
-                  <select 
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="bg-transparent border-none focus:outline-none"
-                  >
-                    <option value="popularity">Sort by Popularity</option>
-                    <option value="bookings">Sort by Bookings</option>
-                    <option value="views">Sort by Views</option>
-                  </select>
-                </div>
+                </div>                
               </div>
 
               {/* Events Grid */}

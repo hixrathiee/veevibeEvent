@@ -336,7 +336,7 @@ const EventDetails: React.FC = () => {
       <WhatsAppButton />
       
       {/* Hero Section with Image */}
-      <div className="relative h-64 md:h-96 w-full overflow-hidden">
+      <div className="relative h-64 md:h-96 w-full overflow-hidden mt-5">
         <img
           src={item.image}
           alt={isThemeItem ? (item as Theme).name : (item as Event).title}

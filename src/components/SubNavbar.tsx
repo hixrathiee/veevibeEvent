@@ -5,7 +5,6 @@ const SubNavbar = () => {
   const location = useLocation();
 
   const eventLinks = [
-    { path: "/events", label: "All Events" },
     { path: "/events/wedding", label: "Weddings" },
     { path: "/events/corporate", label: "Corporate" },
     { path: "/events/entertainment", label: "Entertainment" },
