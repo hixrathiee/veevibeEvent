@@ -17,7 +17,7 @@ const Navbar: React.FC<NavbarProps> = ({ className = '' }) => {
     { path: "/", label: "Home" },
     { path: "/trending", label: "Trending" },
     { path: "/gallery", label: "Gallery" },
-    { path: "/events", label: "Events" }, 
+    { path: "/events/wedding", label: "Events" }, 
     { path: "/about", label: "About" },
   ];
 
