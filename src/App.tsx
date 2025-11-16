@@ -9,12 +9,13 @@ import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import Booking from "./pages/Booking";
 import Trending from "./pages/Trending";
+import EventDetails from "./pages/EventDetails";
 import Wedding from "./pages/events/Wedding";
 import Corporate from "./pages/events/Corporate";
 import Entertainment from "./pages/events/Entertainment";
 import Sports from "./pages/events/Sports";
 import NotFound from "./pages/NotFound";
-import Events from "./pages/Events";
+
 
 const queryClient = new QueryClient();
 
@@ -30,12 +31,13 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/booking" element={<Booking />} />
-            <Route path="/events" element={<Events />} /> 
             <Route path="/trending" element={<Trending />} />
             <Route path="/events/wedding" element={<Wedding />} />
             <Route path="/events/corporate" element={<Corporate />} />
             <Route path="/events/entertainment" element={<Entertainment />} />
             <Route path="/events/sports" element={<Sports />} />
+            <Route path="/event/theme/:id" element={<EventDetails />} />
+            <Route path="/event/:id" element={<EventDetails />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
