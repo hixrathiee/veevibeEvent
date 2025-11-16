@@ -265,8 +265,8 @@ const About = () => {
                 alt="VeeVibe Magazine"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <a
-                href="https://drive.google.com/file/d/1tTwFssuB0bFPTm8Up-BtfhrM9imYuvMV/view?usp=sharing"
+              <a 
+                href="https://drive.google.com/file/d/1QHlcMVdHorvTcHLhw3KVOmXynmNM0w9R/view?usp=drive_link"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
